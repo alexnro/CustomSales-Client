@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import AppBarComponent from './components/AppBarComponent';
+import AppBarComponent from './components/Header/AppBarComponent';
 import GridMenuComponent from './components/GridMenuComponent';
 
 function App() {

@@ -55,7 +55,7 @@ export default function PersistentDrawerLeft() {
                     <Typography className={classes.title} variant="h6" noWrap>
                         Menu
                     </Typography>
-                    <Button className={classes.loginButton} color="inherit">Login</Button>
+                    <Button className={classes.loginButton} color="inherit">Logout</Button>
                 </Toolbar>
             </AppBar>
             <Drawer

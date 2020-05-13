@@ -1,17 +1,29 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
+import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import AppBarComponent from './components/Header/AppBarComponent';
-import GridMenuComponent from './components/GridMenu/GridMenuComponent';
+import HomePage from './containers/HomePage';
 
-function App() {
-    return (
-        <div className="App">
-            <header className="App-header">
+class App extends Component {
+
+    render() {
+
+        const routes = (
+            <Switch>
+                <Route to="/" exact component={HomePage} />
+                <Redirect to="/" />
+            </Switch>
+        )
+
+        return (
+            <div className="App">
                 <AppBarComponent />
-                <GridMenuComponent />
-            </header>
-        </div>
-    );
+                <div>
+                    {routes}
+                </div>
+            </div>
+        );
+    }
 }
 
-export default App;
+export default withRouter(App);

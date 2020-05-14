@@ -52,6 +52,14 @@ const useStyles = makeStyles((theme) => ({
     // },
     loginButton: {
         marginLeft: "auto"
+    },
+    titleLink: {
+        textDecoration: "None",
+        color: "white"
+    },
+    link: {
+        textDecoration: "None",
+        color: "black"
     }
 }));
 

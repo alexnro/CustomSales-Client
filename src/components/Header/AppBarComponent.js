@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import { useTheme } from '@material-ui/core/styles';
 import useStyles from './AppBarStyle';
@@ -22,8 +23,6 @@ export default function PersistentDrawerLeft() {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
-
-    const menuItems = ["Nuevo pedido", "Gestión de pedidos", "Productos", "Gestión de clientes"];
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -52,8 +51,8 @@ export default function PersistentDrawerLeft() {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography className={classes.title} variant="h6" noWrap>
-                        Menu
+                    <Typography variant="h6" noWrap>
+                        <Link className={classes.titleLink} to="/">CustomSales</Link>
                     </Typography>
                     <Button className={classes.loginButton} color="inherit">Logout</Button>
                 </Toolbar>
@@ -74,12 +73,24 @@ export default function PersistentDrawerLeft() {
                 </div>
                 <Divider />
                 <List>
-                    {menuItems.map((text, index) => (
-                        <ListItem button key={text}>
+                    <Link className={classes.link} to="/new-order">
+                        <ListItem button>
                             {/* <ListItemIcon></ListItemIcon> */}
-                            <ListItemText primary={text} />
+                            <ListItemText primary="Nuevo Pedido" />
                         </ListItem>
-                    ))}
+                    </Link>
+                    <ListItem button>
+                        {/* <ListItemIcon></ListItemIcon> */}
+                        <ListItemText primary="Gestión de pedidos" />
+                    </ListItem>
+                    <ListItem button>
+                        {/* <ListItemIcon></ListItemIcon> */}
+                        <ListItemText primary="Productos" />
+                    </ListItem>
+                    <ListItem button>
+                        {/* <ListItemIcon></ListItemIcon> */}
+                        <ListItemText primary="Gestión de clientes" />
+                    </ListItem>
                 </List>
             </Drawer>
         </div>

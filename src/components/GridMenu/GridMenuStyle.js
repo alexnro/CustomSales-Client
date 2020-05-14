@@ -11,6 +11,10 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
         color: theme.palette.text.primary,
         cursor: "pointer"
+    },
+    link: {
+        textDecoration: "None",
+        color: theme.palette.text.primary
     }
 }));
 

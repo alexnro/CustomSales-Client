@@ -3,6 +3,7 @@ import './App.css';
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import AppBarComponent from './components/Header/AppBarComponent';
 import HomePage from './containers/HomePage';
+import NewOrder from './containers/NewOrder';
 
 class App extends Component {
 
@@ -10,7 +11,8 @@ class App extends Component {
 
         const routes = (
             <Switch>
-                <Route to="/" exact component={HomePage} />
+                <Route path="/new-order" component={NewOrder} />
+                <Route path="/" exact component={HomePage} />
                 <Redirect to="/" />
             </Switch>
         )

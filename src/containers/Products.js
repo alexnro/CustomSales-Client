@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import ProductsComponent from '../components/products/ProductsComponent';
 
 class Products extends Component {
 
@@ -23,13 +24,9 @@ class Products extends Component {
     }
 
     render() {
-        const products = this.state.products.map(product => {
-            return <p key={product.id}>{JSON.stringify(product)}</p>
-        })
-
         return (
             <div>
-                {products}
+                <ProductsComponent />
             </div>
         );
     }

@@ -6,10 +6,12 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, compose } from 'redux';
 import reducer from './store/reducer';
 
-const store = createStore(reducer);
+const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION__ : null || compose;
+
+const store = createStore(reducer, composeEnhancers());
 
 const app = (
     <Provider store={store}>

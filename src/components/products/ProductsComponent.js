@@ -24,9 +24,9 @@ import styles from './ProductsStyle';
 
 // NEEDS REDUX TO WORKS BECAUSE PROPS WITH ASYNC DATA DOESN'T WORK AS I WANT
 // ALSO NEEDS STYLE
-const ProductsComponent = (props) => {
+const ProductsComponent = () => {
     const classes = styles();
-    console.log(props);
+
     return (
         <div className={classes.root}>
             <GridList cellHeight={180} className={classes.gridList}>

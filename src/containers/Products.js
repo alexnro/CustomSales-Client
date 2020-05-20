@@ -26,15 +26,14 @@ class Products extends Component {
     }
 
     render() {
-        const products = this.props.products.map(product => {
-            return (
-                <p key={product.id}>{JSON.stringify(product)}</p>
-            )
-        })
         return (
             <div>
-                {products}
-                {/* <ProductsComponent /> */}
+                {this.state.products.map(product => {
+                    return (
+                        <ProductsComponent key={product.id} product={product} />
+                    )
+                }
+                )}
             </div>
         );
     }

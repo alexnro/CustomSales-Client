@@ -1,7 +1,7 @@
 import React from 'react';
 import { GridList, GridListTile, GridListTileBar, IconButton } from '@material-ui/core';
 import InfoIcon from '@material-ui/icons/Info';
-import styles from './ProductsStyle';
+import useStyles from './ProductsStyle';
 
 
 /**
@@ -22,19 +22,17 @@ import styles from './ProductsStyle';
  * ];
  */
 
-// NEEDS REDUX TO WORKS BECAUSE PROPS WITH ASYNC DATA DOESN'T WORK AS I WANT
-// ALSO NEEDS STYLE
-const ProductsComponent = () => {
-    const classes = styles();
+const ProductsComponent = (props) => {
+    const classes = useStyles();
+    const product = props.product;
 
     return (
         <div className={classes.root}>
             <GridList cellHeight={180} className={classes.gridList}>
-                <GridListTile key={"props.products[0].imageUrl"}>
-                    <img src={"tile.img"} alt={"tile.title"} />
+                <GridListTile>
+                    <img src={product.imageUrl} alt={product.name} />
                     <GridListTileBar
-                        title={"tile.title"}
-                        subtitle={<span>by: {"tile.author"}</span>}
+                        title={product.name}
                         actionIcon={
                             <IconButton aria-label={`info about ${"tile.title"}`} className={classes.icon}>
                                 <InfoIcon />
@@ -47,4 +45,5 @@ const ProductsComponent = () => {
         </div>
     );
 }
+
 export default ProductsComponent;

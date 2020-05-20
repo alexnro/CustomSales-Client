@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import ProductsComponent from '../components/products/ProductsComponent';
+import * as actionTypes from '../store/actions';
+import { connect } from 'react-redux';
 
 class Products extends Component {
 
@@ -15,7 +17,7 @@ class Products extends Component {
     componentDidMount() {
         axios.get("https://localhost:44345/api/products")
             .then(response => {
-                this.setState({ products: response.data });
+                this.setState({ products: response.data }, () => this.props.setProducts(this.state.products));
                 console.log(response);
             })
             .catch(error => {
@@ -24,11 +26,30 @@ class Products extends Component {
     }
 
     render() {
+        const products = this.props.products.map(product => {
+            return (
+                <p key={product.id}>{JSON.stringify(product)}</p>
+            )
+        })
         return (
             <div>
-                <ProductsComponent />
+                {products}
+                {/* <ProductsComponent /> */}
             </div>
         );
     }
 }
-export default Products;
+
+const mapStateToProps = state => {
+    return {
+        products: state.products
+    };
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        setProducts: (products) => dispatch({ type: actionTypes.SET_PRODUCTS, products: products })
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Products);

@@ -9,7 +9,12 @@ const reducer = (state = initialState, action) => {
         case actionTypes.GET_PRODUCTS:
             return {
 
-            }
+            };
+        case actionTypes.SET_PRODUCTS:
+            return {
+                ...state,
+                products: action.products
+            };
         default:
             return state;
     }

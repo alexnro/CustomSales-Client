@@ -20,9 +20,7 @@ class App extends Component {
         return (
             <div className="App">
                 <AppBarComponent />
-                <div>
-                    {routes}
-                </div>
+                {routes}
             </div>
         );
     }

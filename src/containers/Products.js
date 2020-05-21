@@ -28,12 +28,7 @@ class Products extends Component {
     render() {
         return (
             <div>
-                {this.state.products.map(product => {
-                    return (
-                        <ProductsComponent key={product.id} product={product} />
-                    )
-                }
-                )}
+                <ProductsComponent products={this.state.products} />
             </div>
         );
     }

@@ -24,23 +24,25 @@ import useStyles from './ProductsStyle';
 
 const ProductsComponent = (props) => {
     const classes = useStyles();
-    const product = props.product;
 
     return (
         <div className={classes.root}>
-            <GridList cellHeight={180} className={classes.gridList}>
-                <GridListTile>
-                    <img src={product.imageUrl} alt={product.name} />
-                    <GridListTileBar
-                        title={product.name}
-                        actionIcon={
-                            <IconButton aria-label={`info about ${"tile.title"}`} className={classes.icon}>
-                                <InfoIcon />
-                            </IconButton>
-                        }
-                    />
-                </GridListTile>
-                ))}
+            <GridList cellHeight={180} cols={4} className={classes.gridList} spacing={12}>
+                {props.products.map(product => {
+                    return (
+                        <GridListTile key={product.id}>
+                            <img src={product.imageUrl} alt={product.name} />
+                            <GridListTileBar
+                                title={product.name}
+                                actionIcon={
+                                    <IconButton aria-label={`info about ${product.mame}`} className={classes.icon}>
+                                        <InfoIcon />
+                                    </IconButton>
+                                }
+                            />
+                        </GridListTile>
+                    )
+                })}
             </GridList>
         </div>
     );

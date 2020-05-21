@@ -14,4 +14,11 @@ const useStyles = makeStyles(() => ({
     },
 }));
 
-export default useStyles;
+const styles = () => ({
+    margintop: {
+        marginTop: "7.5%",
+        marginBottom: "5%"
+    }
+})
+
+export { useStyles, styles };

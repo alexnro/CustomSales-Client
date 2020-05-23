@@ -72,10 +72,12 @@ export default function PersistentDrawerLeft() {
                     </IconButton>
                 </div>
                 <Divider />
-                <List>
+                <List onClick={handleDrawerClose}>
                     <ListItem button>
                         {/* <ListItemIcon></ListItemIcon> */}
-                        <ListItemText primary="Nuevo Pedido" />
+                        <Link className={classes.link} to="/new-order">
+                            <ListItemText primary="Nuevo Pedido" />
+                        </Link>
                     </ListItem>
                     <ListItem button>
                         {/* <ListItemIcon></ListItemIcon> */}

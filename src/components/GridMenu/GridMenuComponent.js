@@ -11,7 +11,9 @@ export default function GridMenuComponent() {
         <div className={classes.root}>
             <Grid container item xs={12} spacing={3}>
                 <Grid item xs={4}>
-                    <Paper className={classes.paper}>Nuevo pedido</Paper>
+                    <Link className={classes.link} to="/new-order">
+                        <Paper className={classes.paper}>Nuevo pedido</Paper>
+                    </Link>
                 </Grid>
                 <Grid item xs={4}>
                     <Paper className={classes.paper}>Gestión de pedidos</Paper>

@@ -12,6 +12,7 @@ class App extends Component {
         const routes = (
             <Switch>
                 <Route path="/products" component={Products} />
+                <Route path="/new-order" component={Products} />
                 <Route path="/" exact component={HomePage} />
                 <Redirect to="/" />
             </Switch>

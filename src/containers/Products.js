@@ -28,7 +28,7 @@ class Products extends Component {
     render() {
         return (
             <div>
-                <ProductsComponent products={this.state.products} />
+                <ProductsComponent products={this.props.products} />
             </div>
         );
     }

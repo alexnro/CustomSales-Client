@@ -1,7 +1,9 @@
 import * as actionTypes from './actions';
+import productData from '../productData.json';
 
+// cambiado temporalmente para no necesitar la API en el despliegue
 const initialState = {
-    products: []
+    products: productData
 };
 
 const reducer = (state = initialState, action) => {

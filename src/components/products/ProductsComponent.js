@@ -1,8 +1,9 @@
 import React from 'react';
-import { GridList, GridListTile, GridListTileBar, IconButton } from '@material-ui/core';
-import InfoIcon from '@material-ui/icons/Info';
+import { GridList, GridListTile, GridListTileBar } from '@material-ui/core';
 import { useStyles, styles } from './ProductsStyle';
 import { withStyles } from '@material-ui/core/styles';
+import ProductInfoButton from './ProductInfoButton';
+import AddProduct from './AddProduct';
 
 
 /**
@@ -28,20 +29,21 @@ import { withStyles } from '@material-ui/core/styles';
 const ProductsComponent = (props) => {
     const classes = useStyles();
 
+    const isNewOrder = window.location.pathname === '/new-order' ? true : false;
+
     return (
         <div className={classes.root}>
             <div className={props.classes.margintop}>
-                <GridList mt={150} cellHeight={180} cols={4} className={classes.gridList} spacing={12}>
+                <GridList mt={150} cellHeight={240} cols={4} className={classes.gridList} spacing={12}>
                     {props.products.map(product => {
                         return (
                             <GridListTile key={product.id}>
                                 <img src={product.imageUrl} alt={product.name} />
                                 <GridListTileBar
                                     title={product.name}
+                                    subtitle={"Stock: " + product.stock}
                                     actionIcon={
-                                        <IconButton aria-label={`info about ${product.mame}`} className={classes.icon}>
-                                            <InfoIcon />
-                                        </IconButton>
+                                        isNewOrder ? <AddProduct stock={product.stock} /> : <ProductInfoButton />
                                     }
                                 />
                             </GridListTile>

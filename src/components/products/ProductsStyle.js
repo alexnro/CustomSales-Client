@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
         flexWrap: 'wrap',
@@ -12,6 +12,9 @@ const useStyles = makeStyles(() => ({
     icon: {
         color: 'rgba(255, 255, 255, 0.54)',
     },
+    formControl: {
+        margin: theme.spacing(1),
+    }
 }));
 
 const styles = () => ({

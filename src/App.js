@@ -4,6 +4,7 @@ import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import AppBarComponent from './components/header/AppBarComponent';
 import HomePage from './containers/HomePage';
 import Products from './containers/Products';
+import InDevelopment from './containers/InDevelopment';
 
 class App extends Component {
 
@@ -13,6 +14,7 @@ class App extends Component {
             <Switch>
                 <Route path="/products" component={Products} />
                 <Route path="/new-order" component={Products} />
+                <Route path="/not-developed" component={InDevelopment} />
                 <Route path="/" exact component={HomePage} />
                 <Redirect to="/" />
             </Switch>

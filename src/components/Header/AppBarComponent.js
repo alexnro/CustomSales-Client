@@ -75,20 +75,24 @@ export default function PersistentDrawerLeft() {
                             <ListItemText primary="Nuevo Pedido" />
                         </ListItem>
                     </Link>
-                    <ListItem button>
-                        {/* <ListItemIcon></ListItemIcon> */}
-                        <ListItemText primary="Gestión de pedidos" />
-                    </ListItem>
+                    <Link className={classes.link} to="/not-developed">
+                        <ListItem button>
+                            {/* <ListItemIcon></ListItemIcon> */}
+                            <ListItemText primary="Gestión de pedidos" />
+                        </ListItem>
+                    </Link>
                     <Link className={classes.link} to="/products">
                         <ListItem button>
                             {/* <ListItemIcon></ListItemIcon> */}
                             <ListItemText primary="Productos" />
                         </ListItem>
                     </Link>
-                    <ListItem button>
-                        {/* <ListItemIcon></ListItemIcon> */}
-                        <ListItemText primary="Gestión de clientes" />
-                    </ListItem>
+                    <Link className={classes.link} to="/not-developed">
+                        <ListItem button>
+                            {/* <ListItemIcon></ListItemIcon> */}
+                            <ListItemText primary="Gestión de clientes" />
+                        </ListItem>
+                    </Link>
                 </List>
             </Drawer>
         </div>

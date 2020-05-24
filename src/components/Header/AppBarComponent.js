@@ -3,20 +3,11 @@ import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import { useTheme } from '@material-ui/core/styles';
 import useStyles from './AppBarStyle';
-import Drawer from '@material-ui/core/Drawer';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
+import { Drawer, CssBaseline, AppBar, Toolbar, List, ListItem, ListItemText, Typography, Divider, IconButton, Button } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Button from '@material-ui/core/Button';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 
 export default function PersistentDrawerLeft() {
@@ -31,6 +22,8 @@ export default function PersistentDrawerLeft() {
     const handleDrawerClose = () => {
         setOpen(false);
     };
+
+    const isNewOrderPage = window.location.pathname === '/new-order' ? true : false;
 
     return (
         <div className={classes.root}>
@@ -54,7 +47,10 @@ export default function PersistentDrawerLeft() {
                     <Typography variant="h6" noWrap>
                         <Link className={classes.titleLink} to="/">CustomSales</Link>
                     </Typography>
-                    <Button className={classes.loginButton} color="inherit">Logout</Button>
+                    <div className={classes.leftAppBar}>
+                        {isNewOrderPage ? <ShoppingCartIcon className={classes.shoppingCart} /> : null}
+                        <Button className={classes.logoutButton} color="inherit">Logout</Button>
+                    </div>
                 </Toolbar>
             </AppBar>
             <Drawer

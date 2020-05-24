@@ -50,8 +50,9 @@ const useStyles = makeStyles((theme) => ({
     //     }),
     //     marginLeft: -drawerWidth,
     // },
-    loginButton: {
-        marginLeft: "auto"
+    leftAppBar: {
+        marginLeft: "auto",
+        // listStyle: "none",
     },
     titleLink: {
         textDecoration: "None",
@@ -60,6 +61,13 @@ const useStyles = makeStyles((theme) => ({
     link: {
         textDecoration: "None",
         color: "black"
+    },
+    shoppingCart: {
+        cursor: "pointer",
+        paddingRight: "5px"
+    },
+    logoutButton: {
+        // marginRight: 
     }
 }));
 

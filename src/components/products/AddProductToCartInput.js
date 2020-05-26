@@ -29,7 +29,7 @@ const AddProductToCartInput = (props) => {
                 >
                     {menuItems.map(item => {
                         return (
-                            <MenuItem value={item}>{item}</MenuItem>
+                            <MenuItem key={item} value={item}>{item}</MenuItem>
                         )
                     })}
                 </Select>

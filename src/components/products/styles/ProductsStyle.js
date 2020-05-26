@@ -8,12 +8,6 @@ const useStyles = makeStyles((theme) => ({
         overflow: 'hidden',
         marginLeft: "5%",
         marginRight: "5%",
-    },
-    icon: {
-        color: 'rgba(255, 255, 255, 0.54)',
-    },
-    formControl: {
-        margin: theme.spacing(1),
     }
 }));
 

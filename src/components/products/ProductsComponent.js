@@ -1,9 +1,10 @@
 import React from 'react';
 import { GridList, GridListTile, GridListTileBar } from '@material-ui/core';
-import { useStyles, styles } from './ProductsStyle';
+import { useStyles, styles } from './styles/ProductsStyle';
 import { withStyles } from '@material-ui/core/styles';
-import ProductInfoButton from './ProductInfoButton';
-import AddProduct from './AddProduct';
+import HandleProductButtons from './HandleProductButtons';
+import AddProductToCartInput from './AddProductToCartInput';
+import AddProductButton from './AddProductButton';
 
 
 /**
@@ -34,6 +35,7 @@ const ProductsComponent = (props) => {
     return (
         <div className={classes.root}>
             <div className={props.classes.margintop}>
+                {isNewOrder ? null : <AddProductButton />}
                 <GridList mt={150} cellHeight={240} cols={4} className={classes.gridList} spacing={12}>
                     {props.products.map(product => {
                         return (
@@ -43,7 +45,7 @@ const ProductsComponent = (props) => {
                                     title={product.name}
                                     subtitle={"Stock: " + product.stock}
                                     actionIcon={
-                                        isNewOrder ? <AddProduct stock={product.stock} /> : <ProductInfoButton />
+                                        isNewOrder ? <AddProductToCartInput stock={product.stock} /> : <HandleProductButtons />
                                     }
                                 />
                             </GridListTile>

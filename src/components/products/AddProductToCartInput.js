@@ -4,10 +4,10 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import { useStyles } from './ProductsStyle';
+import { styles } from './styles/AddInputStyle';
+import { withStyles } from '@material-ui/core/styles'
 
-const AddProduct = (props) => {
-    const classes = useStyles();
+const AddProductToCartInput = (props) => {
 
     const [quantity, setQuantity] = React.useState('');
     const handleChange = (event) => {
@@ -21,7 +21,7 @@ const AddProduct = (props) => {
 
     return (
         <div>
-            <FormControl variant="filled" className={classes.formControl}>
+            <FormControl variant="filled">
                 <Select
                     value={quantity}
                     onChange={handleChange}
@@ -35,10 +35,10 @@ const AddProduct = (props) => {
                 </Select>
             </FormControl>
             <IconButton color="primary" aria-label="add to shopping cart">
-                <AddShoppingCartIcon />
+                <AddShoppingCartIcon className={props.classes.shopCart} />
             </IconButton>
         </div>
     )
 }
 
-export default AddProduct;
+export default withStyles(styles)(AddProductToCartInput);

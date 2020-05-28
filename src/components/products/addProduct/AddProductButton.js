@@ -1,5 +1,5 @@
 import React from 'react';
-import { useStyles } from '../styles/HandleProductStyle';
+import { useStyles } from '../styles/AddProductStyle';
 import ButtonModal from '../../UI/ButtonModal';
 import AddProductModal from './AddProductModal';
 
@@ -8,7 +8,7 @@ const AddProductButton = () => {
     const classes = useStyles();
 
     return (
-        <ButtonModal className={classes.addProduct} variant="contained" color="primary" buttontext="Add Product">
+        <ButtonModal className={classes.openButton} variant="contained" color="primary" buttontext="Add Product">
             <AddProductModal />
         </ButtonModal>
     )

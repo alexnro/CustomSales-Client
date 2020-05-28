@@ -1,5 +1,5 @@
 import React from 'react';
-import { useStyles } from '../styles/AddProductModalStyle';
+import { useStyles } from '../styles/AddProductStyle';
 import TextField from '@material-ui/core/TextField';
 import { Button, List, ListItem } from '@material-ui/core';
 

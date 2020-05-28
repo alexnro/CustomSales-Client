@@ -18,6 +18,7 @@ const ButtonModal = (props) => {
         setOpen(false);
     };
 
+
     return (
         <>
             <Modal
@@ -38,7 +39,12 @@ const ButtonModal = (props) => {
                     </div>
                 </Fade>
             </Modal>
-            <Button {...props} variant={props.variant ? props.variant : 'text'} color={props.color ? props.color : 'default'} onClick={handleOpen}>{props.buttonText}</Button>
+
+            {/* TODO fix warning due to deprecated findDOMNode in strictMode, disabling stricMode fix it but it's a better solution trying to understand 
+            refs and forwardRef because is the actual way to solve it */}
+            <Button {...props} variant={props.variant ? props.variant : 'text'} color={props.color ? props.color : 'default'} onClick={handleOpen}>
+                {props.buttontext}
+            </Button>
         </>
     );
 }

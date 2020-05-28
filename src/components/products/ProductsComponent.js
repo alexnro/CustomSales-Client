@@ -2,9 +2,9 @@ import React from 'react';
 import { GridList, GridListTile, GridListTileBar } from '@material-ui/core';
 import { useStyles, styles } from './styles/ProductsStyle';
 import { withStyles } from '@material-ui/core/styles';
-import HandleProductButtons from './HandleProductButtons';
+import HandleProductButtons from './handleProduct/HandleProductButtons';
 import AddProductToCartInput from './AddProductToCartInput';
-import AddProductButton from './AddProductButton';
+import AddProductButton from './addProduct/AddProductButton';
 
 
 /**

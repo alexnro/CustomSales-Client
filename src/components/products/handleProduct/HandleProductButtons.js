@@ -1,8 +1,8 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-import { useStyles } from './styles/HandleProductStyle';
-import ButtonModal from '../UI/ButtonModal';
+import { useStyles } from '../styles/HandleProductStyle';
+import ButtonModal from '../../UI/ButtonModal';
 
 
 const HandleProductButtons = () => {
@@ -11,7 +11,7 @@ const HandleProductButtons = () => {
     return (
         <div className={classes.root}>
             <ButtonGroup variant="contained" aria-label="contained primary button group">
-                <ButtonModal buttonText="Modify">Modify</ButtonModal>
+                <ButtonModal buttontext="Modify">Modify</ButtonModal>
                 <Button color="secondary">Delete</Button>
             </ButtonGroup>
         </div>

@@ -25,7 +25,7 @@ const ProductsComponent = (props) => {
                                     title={product.name}
                                     subtitle={"Stock: " + product.stock}
                                     actionIcon={
-                                        isNewOrder ? <AddProductToCartInput stock={product.stock} /> : <HandleProductButtons />
+                                        isNewOrder ? <AddProductToCartInput stock={product.stock} /> : <HandleProductButtons productdata={product} />
                                     }
                                 />
                             </GridListTile>

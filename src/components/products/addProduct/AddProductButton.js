@@ -1,7 +1,7 @@
 import React from 'react';
 import { useStyles } from '../styles/AddProductStyle';
 import ButtonModal from '../../UI/ButtonModal';
-import AddProductModal from './AddProductModal';
+import ProductFormModal from '../modal/ProductFormModal';
 
 
 const AddProductButton = () => {
@@ -9,7 +9,7 @@ const AddProductButton = () => {
 
     return (
         <ButtonModal className={classes.openButton} variant="contained" color="primary" buttontext="Add Product">
-            <AddProductModal />
+            <ProductFormModal addproduct={true} />
         </ButtonModal>
     )
 }

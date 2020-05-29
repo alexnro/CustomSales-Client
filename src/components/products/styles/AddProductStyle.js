@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
     },
     openButton: {
         marginBottom: "2%"
+    },
+    addButton: {
+        marginRight: "5%"
     }
 }));
 

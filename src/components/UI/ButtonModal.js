@@ -36,6 +36,7 @@ const ButtonModal = (props) => {
                 <Fade in={open}>
                     <div className={classes.paper}>
                         {props.children}
+                        <Button onClick={handleClose}>Cancel</Button>
                     </div>
                 </Fade>
             </Modal>

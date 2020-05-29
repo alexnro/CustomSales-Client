@@ -1,9 +1,9 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { useStyles } from '../styles/HandleProductStyle';
 import ButtonModal from '../../UI/ButtonModal';
 import ProductFormModal from '../modal/ProductFormModal';
+import DeleteProductModal from '../deleteProduct/DeleteProductModal';
 
 
 const HandleProductButtons = (props) => {
@@ -15,7 +15,9 @@ const HandleProductButtons = (props) => {
                 <ButtonModal buttontext="Modify">
                     <ProductFormModal productdata={props.productdata} />
                 </ButtonModal>
-                <Button color="secondary">Delete</Button>
+                <ButtonModal buttontext="Delete" color="secondary">
+                    <DeleteProductModal productdata={props.productdata} />
+                </ButtonModal>
             </ButtonGroup>
         </div>
     )

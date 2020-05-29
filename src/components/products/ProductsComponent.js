@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import HandleProductButtons from './handleProduct/HandleProductButtons';
 import AddProductToCartInput from './AddProductToCartInput';
 import AddProductButton from './addProduct/AddProductButton';
+import { connect } from 'react-redux';
 
 
 const ProductsComponent = (props) => {
@@ -17,20 +18,20 @@ const ProductsComponent = (props) => {
             <div className={props.classes.margintop}>
                 {isNewOrder ? null : <AddProductButton />}
                 <GridList mt={150} cellHeight={240} cols={4} className={classes.gridList} spacing={12}>
-                    {props.products.map(product => {
+                    {props.products !== undefined ? props.products.map(product => {
                         return (
-                            <GridListTile key={product.id}>
-                                <img src={product.imageUrl} alt={product.name} />
+                            <GridListTile key={product.Id}>
+                                <img src={product.ImageUrl} alt={product.Name} />
                                 <GridListTileBar
-                                    title={product.name}
-                                    subtitle={"Stock: " + product.stock}
+                                    title={product.Name}
+                                    subtitle={"Stock: " + product.Stock}
                                     actionIcon={
-                                        isNewOrder ? <AddProductToCartInput stock={product.stock} /> : <HandleProductButtons productdata={product} />
+                                        isNewOrder ? <AddProductToCartInput stock={product.Stock} /> : <HandleProductButtons productdata={product} />
                                     }
                                 />
                             </GridListTile>
                         )
-                    })}
+                    }) : null}
                 </GridList>
             </div>
         </div>

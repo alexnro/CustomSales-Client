@@ -8,6 +8,11 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { createStore, compose } from 'redux';
 import reducer from './store/reducer';
+import * as firebase from 'firebase/app';
+import 'firebase/storage';
+import firebaseConfig from './firebaseConfig';
+
+firebase.initializeApp(firebaseConfig);
 
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION__ : null || compose;
 

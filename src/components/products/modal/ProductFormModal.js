@@ -4,27 +4,53 @@ import TextField from '@material-ui/core/TextField';
 import { Button, List, ListItem } from '@material-ui/core';
 import { connect } from 'react-redux';
 import * as actionTypes from '../../../store/actions';
+import firebase from 'firebase/app';
 
 
 const ProductFormModal = (props) => {
     const classes = useStyles([]);
 
+    const storageRef = firebase.storage().ref();
+
     const [newProduct, setNewProduct] = useState({
         "Name": "",
         "Price": "",
         "Stock": "",
-        "ImageUrl": "https://firebasestorage.googleapis.com/v0/b/customsales-d3bd1.appspot.com/o/IMG-20150330-WA0000.jpg?alt=media&token=fda3df4b-39ad-466f-8a96-e976a7736664"
+        "ImageUrl": ""
     });
 
+    const [imageFile, setImageFile] = useState();
+
     const handleChange = (event) => {
-        const { name, value } = event.target;
-        setNewProduct(prevState => ({ ...prevState, [name]: value }));
+        if (event.target.type !== "file") {
+            const { name, value } = event.target;
+            setNewProduct(prevState => ({ ...prevState, [name]: value }));
+        } else if (event.target.type === "file") {
+            console.log(event.target.files);
+            const value = event.target.files[0];
+            setImageFile(value);
+        }
+    }
+
+    const setImage = () => {
+        var uploadTask = storageRef.child(imageFile.name).put(imageFile);
+
+        // Listen for state changes, errors, and completion of the upload.
+        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+            snapshot => { },
+            error => { },
+            () => {
+                uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
+                    newProduct.ImageUrl = downloadURL;
+                    props.addProduct(newProduct);
+                })
+            })
     }
 
     const addNewProduct = () => {
         newProduct.Price = parseFloat(newProduct.Price);
         newProduct.Stock = parseFloat(newProduct.Stock);
-        props.addProduct(newProduct);
+        setImage();
     }
 
     const product = props.productdata;

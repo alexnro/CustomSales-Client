@@ -5,7 +5,6 @@ import { withStyles } from '@material-ui/core/styles';
 import HandleProductButtons from './handleProduct/HandleProductButtons';
 import AddProductToCartInput from './AddProductToCartInput';
 import AddProductButton from './addProduct/AddProductButton';
-import { connect } from 'react-redux';
 
 
 const ProductsComponent = (props) => {

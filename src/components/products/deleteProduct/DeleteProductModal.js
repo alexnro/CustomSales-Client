@@ -3,16 +3,26 @@ import { Divider, Button } from '@material-ui/core';
 import { useStyles } from '../styles/DeleteProductModal';
 import { connect } from 'react-redux';
 import * as actionTypes from '../../../store/actions';
+import axios from '../../../axiosBaseUrl';
 
 
 const DeleteProductModal = (props) => {
     const classes = useStyles();
 
+    const deleteProduct = () => {
+        axios.delete('/products?productId=' + props.productdata.Id);
+    }
+
+    const handleDelete = () => {
+        deleteProduct();
+        props.deleteProduct(props.productdata.Id);
+    }
+
     return (
         <>
             <h2>Do you really want to delete this product?</h2>
             <Divider className={classes.divider} />
-            <Button onClick={() => props.deleteProduct(props.productdata.Id)} color="secondary">Delete</Button>
+            <Button onClick={handleDelete} color="secondary">Delete</Button>
         </>
     );
 

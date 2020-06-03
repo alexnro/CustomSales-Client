@@ -17,6 +17,11 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 products: state.products.concat(action.newProduct)
             };
+        case actionTypes.DELETE_PRODUCT:
+            return {
+                ...state,
+                products: state.products.filter(product => product.Id !== action.productId)
+            }
         default:
             return state;
     }

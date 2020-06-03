@@ -5,6 +5,8 @@ import { Button, List, ListItem } from '@material-ui/core';
 import { connect } from 'react-redux';
 import * as actionTypes from '../../../store/actions';
 import firebase from 'firebase/app';
+import axios from '../../../axiosBaseUrl';
+
 
 
 const ProductFormModal = (props) => {
@@ -32,7 +34,16 @@ const ProductFormModal = (props) => {
         }
     }
 
-    const setImage = () => {
+    const postNewProduct = () => {
+        axios.post("/products", newProduct)
+            .then(response => {
+                console.log(response);
+                newProduct.Id = response.data.Id;
+                props.addProduct(newProduct);
+            })
+    }
+
+    const handleUpload = () => {
         var uploadTask = storageRef.child(imageFile.name).put(imageFile);
 
         // Listen for state changes, errors, and completion of the upload.
@@ -42,7 +53,7 @@ const ProductFormModal = (props) => {
             () => {
                 uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
                     newProduct.ImageUrl = downloadURL;
-                    props.addProduct(newProduct);
+                    postNewProduct();
                 })
             })
     }
@@ -50,7 +61,7 @@ const ProductFormModal = (props) => {
     const addNewProduct = () => {
         newProduct.Price = parseFloat(newProduct.Price);
         newProduct.Stock = parseFloat(newProduct.Stock);
-        setImage();
+        handleUpload();
     }
 
     const product = props.productdata;

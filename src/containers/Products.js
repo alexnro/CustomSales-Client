@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import axios from '../axiosBaseUrl';
 import ProductsComponent from '../components/products/ProductsComponent';
 import * as actionTypes from '../store/actions';
 import { connect } from 'react-redux';
@@ -15,7 +15,7 @@ class Products extends Component {
     }
 
     componentDidMount() {
-        axios.get("https://localhost:44345/api/products")
+        axios.get("/products")
             .then(response => {
                 this.setState({ products: response.data }, () => this.props.setProducts(this.state.products));
                 console.log(response);

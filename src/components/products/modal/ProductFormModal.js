@@ -11,14 +11,15 @@ import axios from '../../../axiosBaseUrl';
 
 const ProductFormModal = (props) => {
     const classes = useStyles([]);
+    const product = props.productdata;
 
     const storageRef = firebase.storage().ref();
 
     const [newProduct, setNewProduct] = useState({
-        "Name": "",
-        "Price": "",
-        "Stock": "",
-        "ImageUrl": ""
+        "Name": product != null ? product.Name : undefined,
+        "Price": product != null ? product.Price : undefined,
+        "Stock": product != null ? product.Stock : undefined,
+        "ImageUrl": product != null ? product.ImageUrl : undefined
     });
 
     const [imageFile, setImageFile] = useState();
@@ -64,11 +65,11 @@ const ProductFormModal = (props) => {
         handleUpload();
     }
 
-    const product = props.productdata;
+    const updateProduct = () => {
+        newProduct.Id = product.Id;
+        props.updateProduct(newProduct);
+    }
 
-    let nameValue = product != null ? product.Name : undefined;
-    let priceValue = product != null ? product.Price : undefined;
-    let stockValue = product != null ? product.Stock : undefined;
 
     return (
         <>
@@ -82,7 +83,7 @@ const ProductFormModal = (props) => {
                             label="Product Name"
                             variant="outlined"
                             name="Name"
-                            value={nameValue}
+                            value={newProduct.Name}
                             onChange={handleChange}
                         />
                     </ListItem>
@@ -95,7 +96,7 @@ const ProductFormModal = (props) => {
                             label="Price"
                             variant="outlined"
                             name="Price"
-                            value={priceValue}
+                            value={newProduct.Price}
                             onChange={handleChange}
                         />
                     </ListItem>
@@ -108,7 +109,7 @@ const ProductFormModal = (props) => {
                             label="Stock"
                             variant="outlined"
                             name="Stock"
-                            value={stockValue}
+                            value={newProduct.Stock}
                             onChange={handleChange}
                         />
                     </ListItem>
@@ -120,7 +121,7 @@ const ProductFormModal = (props) => {
                         : null}
                 </List>
             </form>
-            <Button onClick={addNewProduct} className={classes.addButton} variant="outlined" color="primary">
+            <Button onClick={props.addproduct ? addNewProduct : updateProduct} className={classes.addButton} variant="outlined" color="primary">
                 {props.addproduct ? "Add Product" : "Modify Product"}
             </Button>
         </>
@@ -136,7 +137,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        addProduct: (newProduct) => dispatch({ type: actionTypes.ADD_PRODUCT, newProduct: newProduct })
+        addProduct: (newProduct) => dispatch({ type: actionTypes.ADD_PRODUCT, newProduct: newProduct }),
+        updateProduct: (updatedProduct) => dispatch({ type: actionTypes.UPDATE_PRODUCT, updatedProduct: updatedProduct })
     }
 }
 

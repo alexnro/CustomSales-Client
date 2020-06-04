@@ -17,6 +17,11 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 products: state.products.concat(action.newProduct)
             };
+        case actionTypes.UPDATE_PRODUCT:
+            return {
+                ...state,
+                products: state.products.map(product => product.Id === action.updatedProduct.Id ? action.updatedProduct : product)
+            }
         case actionTypes.DELETE_PRODUCT:
             return {
                 ...state,

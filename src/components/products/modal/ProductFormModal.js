@@ -59,14 +59,22 @@ const ProductFormModal = (props) => {
             })
     }
 
+    const updateProduct = () => {
+        axios.put("/products", newProduct)
+            .then(response => {
+                console.log(response);
+            })
+    }
+
     const addNewProduct = () => {
         newProduct.Price = parseFloat(newProduct.Price);
         newProduct.Stock = parseFloat(newProduct.Stock);
         handleUpload();
     }
 
-    const updateProduct = () => {
+    const handleUpdate = () => {
         newProduct.Id = product.Id;
+        updateProduct();
         props.updateProduct(newProduct);
     }
 
@@ -121,7 +129,7 @@ const ProductFormModal = (props) => {
                         : null}
                 </List>
             </form>
-            <Button onClick={props.addproduct ? addNewProduct : updateProduct} className={classes.addButton} variant="outlined" color="primary">
+            <Button onClick={props.addproduct ? addNewProduct : handleUpdate} className={classes.addButton} variant="outlined" color="primary">
                 {props.addproduct ? "Add Product" : "Modify Product"}
             </Button>
         </>

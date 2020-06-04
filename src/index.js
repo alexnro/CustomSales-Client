@@ -6,8 +6,9 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { createStore, compose } from 'redux';
-import reducer from './store/reducer';
+import { createStore, compose, combineReducers } from 'redux';
+import productsReducer from './store/reducers/products';
+import shopCartReducer from './store/reducers/shopCart';
 import * as firebase from 'firebase/app';
 import 'firebase/storage';
 import firebaseConfig from './firebaseConfig';
@@ -16,7 +17,12 @@ firebase.initializeApp(firebaseConfig);
 
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION__ : null || compose;
 
-const store = createStore(reducer, composeEnhancers());
+const rootReducer = combineReducers({
+    products: productsReducer,
+    shopCart: shopCartReducer
+});
+
+const store = createStore(rootReducer, composeEnhancers());
 
 const app = (
     <Provider store={store}>

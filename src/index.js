@@ -9,6 +9,7 @@ import { Provider } from 'react-redux';
 import { createStore, compose, combineReducers } from 'redux';
 import productsReducer from './store/reducers/products';
 import shopCartReducer from './store/reducers/shopCart';
+import clientsReducer from './store/reducers/clients';
 import * as firebase from 'firebase/app';
 import 'firebase/storage';
 import firebaseConfig from './firebaseConfig';
@@ -19,7 +20,8 @@ const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX
 
 const rootReducer = combineReducers({
     products: productsReducer,
-    shopCart: shopCartReducer
+    shopCart: shopCartReducer,
+    clients: clientsReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers());

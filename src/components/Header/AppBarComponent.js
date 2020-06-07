@@ -7,7 +7,7 @@ import { Drawer, CssBaseline, AppBar, Toolbar, List, ListItem, ListItemText, Typ
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import ShopCartModal from '../products/shopCart/ShopCartModal';
 
 
 export default function PersistentDrawerLeft() {
@@ -48,7 +48,7 @@ export default function PersistentDrawerLeft() {
                         <Link className={classes.titleLink} to="/">CustomSales</Link>
                     </Typography>
                     <div className={classes.leftAppBar}>
-                        {isNewOrderPage ? <ShoppingCartIcon className={classes.shoppingCart} /> : null}
+                        {isNewOrderPage ? <ShopCartModal /> : null}
                         <Button className={classes.logoutButton} color="inherit">Logout</Button>
                     </div>
                 </Toolbar>

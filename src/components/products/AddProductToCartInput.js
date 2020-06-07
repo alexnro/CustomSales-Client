@@ -22,6 +22,11 @@ const AddProductToCartInput = (props) => {
         menuItems.push(i);
     }
 
+    const handleAddProduct = () => {
+        props.addProductToCart(props.productdata, quantity);
+        props.calculateTotalPrice();
+    }
+
     return (
         <div>
             <FormControl variant="filled">
@@ -37,7 +42,7 @@ const AddProductToCartInput = (props) => {
                     })}
                 </Select>
             </FormControl>
-            <IconButton onClick={() => props.addProductToCart(props.productdata, quantity)} color="primary" aria-label="add to shopping cart">
+            <IconButton onClick={handleAddProduct} color="primary" aria-label="add to shopping cart">
                 <AddShoppingCartIcon className={props.classes.shopCart} />
             </IconButton>
         </div>
@@ -46,7 +51,8 @@ const AddProductToCartInput = (props) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        addProductToCart: (product, quantity) => dispatch({ type: actionTypes.ADD_TO_CART, product: product, quantity: quantity})
+        addProductToCart: (product, quantity) => dispatch({ type: actionTypes.ADD_TO_CART, product: product, quantity: quantity }),
+        calculateTotalPrice: () => dispatch({ type: actionTypes.CALCULATE_TOTAL_PRICE })
     }
 }
 

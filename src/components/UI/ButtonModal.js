@@ -4,6 +4,7 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import Button from '@material-ui/core/Button';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 
 const ButtonModal = (props) => {
@@ -43,9 +44,12 @@ const ButtonModal = (props) => {
 
             {/* TODO fix warning due to deprecated findDOMNode in strictMode, disabling stricMode fix it but it's a better solution trying to understand 
             refs and forwardRef because is the actual way to solve it */}
-            <Button {...props} variant={props.variant ? props.variant : 'text'} color={props.color ? props.color : 'default'} onClick={handleOpen}>
-                {props.buttontext}
-            </Button>
+            {props.iscart ?
+                <ShoppingCartIcon className={classes.shoppingCart} onClick={handleOpen} /> :
+                <Button {...props} variant={props.variant ? props.variant : 'text'} color={props.color ? props.color : 'default'} onClick={handleOpen}>
+                    {props.buttontext}
+                </Button>
+            }
         </>
     );
 }

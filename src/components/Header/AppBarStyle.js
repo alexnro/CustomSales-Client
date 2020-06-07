@@ -62,10 +62,6 @@ const useStyles = makeStyles((theme) => ({
         textDecoration: "None",
         color: "black"
     },
-    shoppingCart: {
-        cursor: "pointer",
-        paddingRight: "5px"
-    },
     logoutButton: {
         // marginRight: 
     }

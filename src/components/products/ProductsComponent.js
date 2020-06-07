@@ -16,16 +16,16 @@ const ProductsComponent = (props) => {
         <div className={classes.root}>
             <div className={props.classes.margintop}>
                 {isNewOrder ? null : <AddProductButton />}
-                <GridList mt={150} cellHeight={240} cols={4} className={classes.gridList} spacing={12}>
+                <GridList mt={150} cellHeight={320} cols={4} className={classes.gridList} spacing={12}>
                     {props.products !== undefined ? props.products.map(product => {
                         return (
                             <GridListTile key={product.Id}>
                                 <img src={product.ImageUrl} alt={product.Name} />
                                 <GridListTileBar
                                     title={product.Name}
-                                    subtitle={"Stock: " + product.Stock}
+                                    subtitle={"Price: " + product.Price + "€ Stock: " + product.Stock}
                                     actionIcon={
-                                        isNewOrder ? <AddProductToCartInput stock={product.Stock} /> : <HandleProductButtons productdata={product} />
+                                        isNewOrder ? <AddProductToCartInput productdata={product} /> : <HandleProductButtons productdata={product} />
                                     }
                                 />
                             </GridListTile>

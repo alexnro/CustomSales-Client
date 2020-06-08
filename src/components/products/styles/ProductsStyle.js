@@ -15,6 +15,9 @@ const styles = () => ({
     margintop: {
         marginTop: "7.5%",
         marginBottom: "5%"
+    },
+    clientName: {
+        color: "white"
     }
 })
 

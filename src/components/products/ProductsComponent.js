@@ -21,7 +21,9 @@ const ProductsComponent = (props) => {
     return (
         <div className={classes.root}>
             <div className={props.classes.margintop}>
-                {isNewOrder ? null : <AddProductButton />}
+                {isNewOrder ?
+                    <h3 className={props.classes.clientName}>Client: {props.shopCart.client.Name}</h3>
+                    : <AddProductButton />}
                 <GridList mt={150} cellHeight={320} cols={4} className={classes.gridList} spacing={12}>
                     {props.products !== undefined ? props.products.map(product => {
                         return (

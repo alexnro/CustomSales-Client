@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import { Select, MenuItem, List, ListItem, FormControl } from '@material-ui/core';
 import { connect } from 'react-redux';
+import * as actionTypes from '../../store/actions';
 
 
 const SelectClientModal = (props) => {
@@ -26,6 +27,9 @@ const SelectClientModal = (props) => {
         setOpen(false);
     };
 
+    const handleChooseClient = () => {
+        props.setClient(client);
+    }
 
     return (
         <>
@@ -49,7 +53,7 @@ const SelectClientModal = (props) => {
                                 <FormControl className={classes.formControl} variant="outlined">
                                     <Select
                                         onChange={handleChange}
-                                        value={client}
+                                        value={client ? client : ''}
                                     >
                                         {props.clients ? props.clients.map(client => {
                                             return (
@@ -60,7 +64,7 @@ const SelectClientModal = (props) => {
                                 </FormControl>
                             </ListItem>
                             <ListItem>
-                                <Button className={classes.continueButton} variant="outlined" color="primary">Continue</Button>
+                                <Button onClick={handleChooseClient} className={classes.continueButton} variant="outlined" color="primary">Continue</Button>
                                 <Button onClick={handleClose}>Cancel</Button>
                             </ListItem>
                         </List>
@@ -81,4 +85,10 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(SelectClientModal);
+const mapDispatchToProps = dispatch => {
+    return {
+        setClient: client => dispatch({ type: actionTypes.SET_CLIENT, client: client })
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SelectClientModal);

@@ -39,6 +39,11 @@ const reducer = (state = initialState, action) => {
                 products: productsCartUpdated,
                 totalPrice: calculateTotalPrice(productsCartUpdated)
             }
+        case actionTypes.SET_CLIENT:
+            return {
+                ...state,
+                client: action.client
+            }
         default:
             return state;
     }

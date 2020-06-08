@@ -5,12 +5,18 @@ import { withStyles } from '@material-ui/core/styles';
 import HandleProductButtons from './handleProduct/HandleProductButtons';
 import AddProductToCartInput from './AddProductToCartInput';
 import AddProductButton from './addProduct/AddProductButton';
+import { connect } from 'react-redux';
 
 
 const ProductsComponent = (props) => {
     const classes = useStyles();
 
     const isNewOrder = window.location.pathname === '/new-order' ? true : false;
+
+    // Redirect to main page if client is not set for new order
+    if (isNewOrder && !props.shopCart.client) {
+        window.location.href = '/';
+    }
 
     return (
         <div className={classes.root}>
@@ -37,4 +43,10 @@ const ProductsComponent = (props) => {
     );
 }
 
-export default withStyles(styles)(ProductsComponent);
+const mapStateToProps = state => {
+    return {
+        shopCart: state.shopCart
+    }
+}
+
+export default connect(mapStateToProps)(withStyles(styles)(ProductsComponent));

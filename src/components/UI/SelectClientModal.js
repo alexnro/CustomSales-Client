@@ -8,6 +8,7 @@ import Paper from '@material-ui/core/Paper';
 import { Select, MenuItem, List, ListItem, FormControl } from '@material-ui/core';
 import { connect } from 'react-redux';
 import * as actionTypes from '../../store/actions';
+import { Link } from 'react-router-dom';
 
 
 const SelectClientModal = (props) => {
@@ -64,7 +65,9 @@ const SelectClientModal = (props) => {
                                 </FormControl>
                             </ListItem>
                             <ListItem>
-                                <Button onClick={handleChooseClient} className={classes.continueButton} variant="outlined" color="primary">Continue</Button>
+                                <Link className={classes.link} to={client ? "/new-order" : "/"}>
+                                    <Button onClick={handleChooseClient} className={classes.continueButton} variant="outlined" color="primary">Continue</Button>
+                                </Link>
                                 <Button onClick={handleClose}>Cancel</Button>
                             </ListItem>
                         </List>

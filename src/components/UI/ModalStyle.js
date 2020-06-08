@@ -17,6 +17,19 @@ const useStyles = makeStyles((theme) => ({
         cursor: "pointer",
         marginRight: "20px"
     },
+    menuPaper: {
+        padding: theme.spacing(1),
+        textAlign: 'center',
+        color: theme.palette.text.primary,
+        cursor: "pointer"
+    },
+    continueButton: {
+        marginRight: "5%"
+    },
+    formControl: {
+        margin: theme.spacing(1),
+        minWidth: 120,
+    }
 }));
 
 export { useStyles };

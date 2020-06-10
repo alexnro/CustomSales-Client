@@ -15,7 +15,8 @@ const ProductsComponent = (props) => {
 
     // Redirect to main page if client is not set for new order
     if (isNewOrder && !props.shopCart.client) {
-        window.location.href = '/';
+        alert("You need to select a client first!");
+        window.location.pathname = '/menu';
     }
 
     return (

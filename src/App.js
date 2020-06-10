@@ -5,6 +5,7 @@ import AppBarComponent from './components/header/AppBarComponent';
 import HomePage from './containers/HomePage';
 import Products from './containers/Products';
 import InDevelopment from './containers/InDevelopment';
+import Login from './containers/Login';
 import axios from './axiosBaseUrl';
 import { connect } from 'react-redux';
 import * as actionTypes from './store/actions';
@@ -17,11 +18,18 @@ class App extends Component {
 
         this.state = {
             products: [],
-            clients: []
+            clients: [],
+            isLogin: false
         };
 
         this.getProducts = this.getProducts.bind(this);
         this.getClients = this.getClients.bind(this);
+        this.isLogin = this.isLogin.bind(this);
+    }
+
+    isLogin() {
+        let isLogin = window.location.pathname === '/login' ? true : false;
+        this.setState({ isLogin: isLogin });
     }
 
     getProducts() {
@@ -47,6 +55,8 @@ class App extends Component {
     }
 
     componentDidMount() {
+        this.isLogin();
+        console.log(this.state);
         this.getProducts();
         this.getClients();
     }
@@ -58,14 +68,18 @@ class App extends Component {
                 <Route path="/products" component={Products} />
                 <Route path="/new-order" component={Products} />
                 <Route path="/not-developed" component={InDevelopment} />
-                <Route path="/" exact component={HomePage} />
-                <Redirect to="/" />
+                <Route path="/menu" component={HomePage} />
+                <Route path="/login" component={Login} />
+                <Redirect to="/menu" />
             </Switch>
         )
 
         return (
-            <div className="App">
-                <AppBarComponent />
+            <div className={this.state.isLogin ? "Login" : "App"}>
+                {!this.state.isLogin ?
+                    <AppBarComponent />
+                    : null
+                }
                 {routes}
             </div>
         );

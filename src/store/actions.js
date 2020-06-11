@@ -12,3 +12,7 @@ export const SET_CLIENT = 'SET_CLIENT';
 
 // Clients
 export const SET_CLIENTS = 'SET_CLIENTS';
+
+// Users
+export const LOGIN_USER = 'LOGIN_USER';
+export const LOGOUT_USER = 'LOGOUT_USER';

@@ -10,18 +10,20 @@ import { createStore, compose, combineReducers } from 'redux';
 import productsReducer from './store/reducers/products';
 import shopCartReducer from './store/reducers/shopCart';
 import clientsReducer from './store/reducers/clients';
+import usersReducer from './store/reducers/users';
 import * as firebase from 'firebase/app';
 import 'firebase/storage';
 import firebaseConfig from './firebaseConfig';
 
 firebase.initializeApp(firebaseConfig);
 
-const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION__ : null || compose;
+const composeEnhancers = (process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION__ : null) || compose;
 
 const rootReducer = combineReducers({
     products: productsReducer,
     shopCart: shopCartReducer,
-    clients: clientsReducer
+    clients: clientsReducer,
+    users: usersReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers());

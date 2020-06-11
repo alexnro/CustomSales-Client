@@ -2,10 +2,50 @@ import React, { Component } from 'react';
 import { withStyles, Grid, TextField, Button } from '@material-ui/core';
 import { Face, Fingerprint } from '@material-ui/icons'
 import { styles } from './LoginStyle';
+import axios from '../../axiosBaseUrl';
+import { connect } from 'react-redux';
+import * as actionTypes from '../../store/actions';
+import { Redirect } from 'react-router-dom';
 
 
 class LoginComponent extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            Username: "",
+            Password: "",
+        }
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleLogin = this.handleLogin.bind(this);
+    }
+
+    handleChange = event => {
+        const { name, value } = event.target;
+        this.setState({ [name]: value });
+        console.log(this.state);
+    }
+
+    handleLogin() {
+        axios.get("/users/" + this.state.Username, this.state)
+            .then(response => {
+                console.log(response);
+                if (response.data !== "") {
+                    this.props.loginUser(this.state.Username);
+                } else {
+                    alert("Username or password is incorrect!");
+                }
+            })
+    }
+
     render() {
+
+        if (this.props.user.IsAuth) {
+            return <Redirect to="/menu" />
+        }
+
         const classes = this.props.classes;
 
         return (
@@ -16,7 +56,7 @@ class LoginComponent extends Component {
                         <Face />
                     </Grid>
                     <Grid item md={true} sm={true} xs={true}>
-                        <TextField id="username" label="Username" type="text" fullWidth autoFocus required />
+                        <TextField onChange={this.handleChange} name="Username" id="username" label="Username" type="text" fullWidth autoFocus required />
                     </Grid>
                 </Grid>
                 <Grid container spacing={8} alignItems="flex-end">
@@ -24,15 +64,27 @@ class LoginComponent extends Component {
                         <Fingerprint />
                     </Grid>
                     <Grid item md={true} sm={true} xs={true}>
-                        <TextField id="password" label="Password" type="password" fullWidth required />
+                        <TextField onChange={this.handleChange} name="Password" id="password" label="Password" type="password" fullWidth required />
                     </Grid>
                 </Grid>
                 <Grid container justify="center" style={{ marginTop: '40px' }}>
-                    <Button variant="contained" color="primary">Login</Button>
+                    <Button onClick={this.handleLogin} variant="contained" color="primary">Login</Button>
                 </Grid>
             </div>
         );
     }
 }
 
-export default withStyles(styles)(LoginComponent);
+const mapStateToProps = state => {
+    return {
+        user: state.users
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        loginUser: username => dispatch({ type: actionTypes.LOGIN_USER, username: username })
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(LoginComponent));

@@ -25,19 +25,22 @@ class LoginComponent extends Component {
     handleChange = event => {
         const { name, value } = event.target;
         this.setState({ [name]: value });
-        console.log(this.state);
     }
 
     handleLogin() {
-        axios.get("/users/" + this.state.Username, this.state)
-            .then(response => {
-                console.log(response);
-                if (response.data !== "") {
-                    this.props.loginUser(this.state.Username);
-                } else {
-                    alert("Username or password is incorrect!");
-                }
-            })
+        if (this.state.Username !== "") {
+            axios.get("/users/" + this.state.Username, this.state)
+                .then(response => {
+                    console.log(response);
+                    if (response.data.Name === this.state.Username) {
+                        this.props.loginUser(this.state.Username);
+                    } else {
+                        alert("Username or password is incorrect!");
+                    }
+                })
+        } else {
+            alert("You need to write an username");
+        }
     }
 
     render() {

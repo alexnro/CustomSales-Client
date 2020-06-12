@@ -26,3 +26,6 @@ yarn-error.log*
 /.firebase
 .firebaserc
 firebaseConfig.js
+
+# Visual Studio Code
+/.vscode

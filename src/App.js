@@ -25,11 +25,16 @@ class App extends Component {
         this.getProducts = this.getProducts.bind(this);
         this.getClients = this.getClients.bind(this);
         this.isLogin = this.isLogin.bind(this);
+        this.exitLogin = this.exitLogin.bind(this);
     }
 
     isLogin() {
         let isLogin = window.location.pathname === '/login' ? true : false;
         this.setState({ isLogin: isLogin });
+    }
+
+    exitLogin() {
+        this.setState({ isLogin: false })
     }
 
     getProducts() {
@@ -69,7 +74,7 @@ class App extends Component {
                 <Route path="/new-order" component={Products} />
                 <Route path="/not-developed" component={InDevelopment} />
                 <Route path="/menu" component={HomePage} />
-                <Route path="/login" component={Login} />
+                <Route path="/login" render={() => <Login exitLogin={this.exitLogin} />}/>
                 <Redirect to="/menu" />
             </Switch>
         )

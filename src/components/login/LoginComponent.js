@@ -34,6 +34,7 @@ class LoginComponent extends Component {
                     console.log(response);
                     if (response.data.Name === this.state.Username) {
                         this.props.loginUser(this.state.Username);
+                        this.props.exitLogin();
                     } else {
                         alert("Username or password is incorrect!");
                     }

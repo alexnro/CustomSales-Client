@@ -62,8 +62,10 @@ class App extends Component {
     componentDidMount() {
         this.isLogin();
         console.log(this.state);
-        this.getProducts();
-        this.getClients();
+        if (this.props.user.IsAuth) {
+            this.getProducts();
+            this.getClients();
+        }
     }
 
     render() {
@@ -74,7 +76,7 @@ class App extends Component {
                 <Route path="/new-order" component={Products} />
                 <Route path="/not-developed" component={InDevelopment} />
                 <Route path="/menu" component={HomePage} />
-                <Route path="/login" render={() => <Login exitLogin={this.exitLogin} />}/>
+                <Route path="/login" render={() => <Login exitLogin={this.exitLogin} />} />
                 <Redirect to="/menu" />
             </Switch>
         )
@@ -91,6 +93,12 @@ class App extends Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        user: state.users
+    }
+}
+
 const mapDispatchToProps = dispatch => {
     return {
         setProducts: (products) => dispatch({ type: actionTypes.SET_PRODUCTS, products: products }),
@@ -98,4 +106,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(withRouter(App));
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(App));

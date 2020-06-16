@@ -29,15 +29,19 @@ class LoginComponent extends Component {
 
     handleLogin() {
         if (this.state.Username !== "") {
-            axios.get("/users/" + this.state.Username, this.state)
+            axios.post("/users/login", this.state)
                 .then(response => {
                     console.log(response);
-                    if (response.data.Name === this.state.Username) {
+                    if (response.data.Username === this.state.Username) {
+                        localStorage.setItem("token", response.data.Token);
                         this.props.loginUser(this.state.Username);
                         this.props.exitLogin();
                     } else {
                         alert("Username or password is incorrect!");
                     }
+                })
+                .catch(error => {
+                    console.log(error);
                 })
         } else {
             alert("You need to write an username");

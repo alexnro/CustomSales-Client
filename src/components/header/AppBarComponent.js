@@ -8,6 +8,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ShopCartModal from '../products/shopCart/ShopCartModal';
+import LogoutButton from '../logout/LogoutButton';
 
 
 export default function PersistentDrawerLeft() {
@@ -49,7 +50,7 @@ export default function PersistentDrawerLeft() {
                     </Typography>
                     <div className={classes.leftAppBar}>
                         {isNewOrderPage ? <ShopCartModal /> : null}
-                        <Button className={classes.logoutButton} color="inherit">Logout</Button>
+                        <LogoutButton />
                     </div>
                 </Toolbar>
             </AppBar>

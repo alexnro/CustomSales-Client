@@ -61,9 +61,6 @@ const useStyles = makeStyles((theme) => ({
     link: {
         textDecoration: "None",
         color: "black"
-    },
-    logoutButton: {
-        // marginRight: 
     }
 }));
 

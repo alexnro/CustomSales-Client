@@ -13,6 +13,11 @@ const reducer = (state = initialState, action) => {
                 Username: action.username,
                 IsAuth: true
             }
+        case actionTypes.LOGOUT_USER:
+            return {
+                Username: "",
+                IsAuth: false
+            }
         default:
             return state;
     }

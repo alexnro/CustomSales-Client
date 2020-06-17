@@ -26,6 +26,7 @@ class App extends Component {
         this.getClients = this.getClients.bind(this);
         this.isLogin = this.isLogin.bind(this);
         this.exitLogin = this.exitLogin.bind(this);
+        this.authenticateToken = this.authenticateToken.bind(this);
     }
 
     isLogin() {
@@ -35,6 +36,20 @@ class App extends Component {
 
     exitLogin() {
         this.setState({ isLogin: false })
+    }
+
+    authenticateToken() {
+        const token = localStorage.getItem("token");
+        axios.post("/users/authenticate", { "Token": token })
+            .then(response => {
+                console.log(response);
+                if (response.data) {
+                    this.props.loginUser(response.data.Username);
+                }
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
 
     getProducts() {
@@ -60,8 +75,12 @@ class App extends Component {
     }
 
     componentDidMount() {
+        if (localStorage.getItem("token")) {
+            this.authenticateToken();
+        }
         this.isLogin();
         console.log(this.state);
+        // TODO fix not calling methods below
         if (this.props.user.IsAuth) {
             this.getProducts();
             this.getClients();
@@ -70,23 +89,35 @@ class App extends Component {
 
     render() {
 
-        const routes = (
+        let routes = (
             <Switch>
-                <Route path="/products" component={Products} />
-                <Route path="/new-order" component={Products} />
-                <Route path="/not-developed" component={InDevelopment} />
-                <Route path="/menu" component={HomePage} />
                 <Route path="/login" render={() => <Login exitLogin={this.exitLogin} />} />
-                <Redirect to="/menu" />
+                <Redirect to="/login" />
             </Switch>
+
         )
 
-        return (
-            <div className={this.state.isLogin ? "Login" : "App"}>
-                {!this.state.isLogin ?
+        if (this.props.user.IsAuth) {
+            routes = (
+                <Switch>
+                    <Route path="/products" component={Products} />
+                    <Route path="/new-order" component={Products} />
+                    <Route path="/not-developed" component={InDevelopment} />
+                    <Route path="/menu" component={HomePage} />
+                    <Redirect to="/menu" />
+                </Switch>
+            )
+
+            return (
+                <div className="App">
                     <AppBarComponent />
-                    : null
-                }
+                    {routes}
+                </div>
+            )
+        }
+
+        return (
+            <div className="Login">
                 {routes}
             </div>
         );
@@ -102,7 +133,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         setProducts: (products) => dispatch({ type: actionTypes.SET_PRODUCTS, products: products }),
-        setClients: (clients) => dispatch({ type: actionTypes.SET_CLIENTS, clients: clients })
+        setClients: (clients) => dispatch({ type: actionTypes.SET_CLIENTS, clients: clients }),
+        loginUser: username => dispatch({ type: actionTypes.LOGIN_USER, username: username })
     }
 }
 

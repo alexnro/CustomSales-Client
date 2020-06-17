@@ -24,6 +24,7 @@ class App extends Component {
 
         this.getProducts = this.getProducts.bind(this);
         this.getClients = this.getClients.bind(this);
+        this.getData = this.getData.bind(this);
         this.isLogin = this.isLogin.bind(this);
         this.exitLogin = this.exitLogin.bind(this);
         this.authenticateToken = this.authenticateToken.bind(this);
@@ -44,12 +45,18 @@ class App extends Component {
             .then(response => {
                 console.log(response);
                 if (response.data) {
-                    this.props.loginUser(response.data.Username);
+                    this.props.loginUser(response.data.Username)
+                    this.getData();
                 }
             })
             .catch(error => {
                 console.log(error);
             })
+    }
+
+    getData() {
+        this.getProducts();
+        this.getClients();
     }
 
     getProducts() {
@@ -79,12 +86,6 @@ class App extends Component {
             this.authenticateToken();
         }
         this.isLogin();
-        console.log(this.state);
-        // TODO fix not calling methods below
-        if (this.props.user.IsAuth) {
-            this.getProducts();
-            this.getClients();
-        }
     }
 
     render() {

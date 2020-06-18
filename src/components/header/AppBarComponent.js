@@ -9,6 +9,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ShopCartModal from '../products/shopCart/ShopCartModal';
 import LogoutButton from '../logout/LogoutButton';
+import SelectClientModal from '../UI/SelectClientModal';
 
 
 export default function PersistentDrawerLeft() {
@@ -70,12 +71,10 @@ export default function PersistentDrawerLeft() {
                 </div>
                 <Divider />
                 <List onClick={handleDrawerClose}>
-                    <Link className={classes.link} to="/new-order">
-                        <ListItem button>
-                            {/* <ListItemIcon></ListItemIcon> */}
-                            <ListItemText primary="Nuevo Pedido" />
-                        </ListItem>
-                    </Link>
+                    <ListItem button>
+                        {/* <ListItemIcon></ListItemIcon> */}
+                        <SelectClientModal />
+                    </ListItem>
                     <Link className={classes.link} to="/not-developed">
                         <ListItem button>
                             {/* <ListItemIcon></ListItemIcon> */}

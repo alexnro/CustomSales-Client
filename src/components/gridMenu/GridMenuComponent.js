@@ -13,7 +13,7 @@ export default function GridMenuComponent() {
         <div className={classes.root}>
             <Grid container item xs={12} spacing={3}>
                 <Grid item xs={4}>
-                    <SelectClientModal />
+                    <SelectClientModal gridmenu />
                 </Grid>
                 <Grid item xs={4}>
                     <Link className={classes.link} to="/not-developed">

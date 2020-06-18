@@ -5,7 +5,7 @@ import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
-import { Select, MenuItem, List, ListItem, FormControl } from '@material-ui/core';
+import { Select, MenuItem, List, ListItem, ListItemText, FormControl } from '@material-ui/core';
 import { connect } from 'react-redux';
 import * as actionTypes from '../../store/actions';
 import { Link } from 'react-router-dom';
@@ -30,6 +30,7 @@ const SelectClientModal = (props) => {
 
     const handleChooseClient = () => {
         props.setClient(client);
+        handleClose();
     }
 
     return (
@@ -77,7 +78,10 @@ const SelectClientModal = (props) => {
 
             {/* TODO fix warning due to deprecated findDOMNode in strictMode, disabling stricMode fix it but it's a better solution trying to understand 
             refs and forwardRef because is the actual way to solve it */}
-            <Paper className={classes.menuPaper} onClick={handleOpen} >Nuevo pedido</Paper>
+            {props.gridmenu ?
+                <Paper className={classes.menuPaper} onClick={handleOpen} >Nuevo pedido</Paper>
+                : <ListItemText onClick={handleOpen} primary="Nuevo Pedido" />
+            }
         </>
     );
 }

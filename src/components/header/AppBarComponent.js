@@ -1,20 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
-import { useTheme } from '@material-ui/core/styles';
 import useStyles from './AppBarStyle';
-import { Drawer, CssBaseline, AppBar, Toolbar, List, ListItem, ListItemText, Typography, Divider, IconButton } from '@material-ui/core';
+import { CssBaseline, AppBar, Toolbar, Typography, IconButton } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ShopCartModal from '../products/shopCart/ShopCartModal';
 import LogoutButton from '../logout/LogoutButton';
-import SelectClientModal from '../UI/SelectClientModal';
+import DrawerComponent from '../drawer/DrawerComponent';
 
 
 export default function PersistentDrawerLeft() {
     const classes = useStyles();
-    const theme = useTheme();
     const [open, setOpen] = React.useState(false);
 
     const handleDrawerOpen = () => {
@@ -55,46 +51,7 @@ export default function PersistentDrawerLeft() {
                     </div>
                 </Toolbar>
             </AppBar>
-            <Drawer
-                className={classes.drawer}
-                variant="persistent"
-                anchor="left"
-                open={open}
-                classes={{
-                    paper: classes.drawerPaper,
-                }}
-            >
-                <div className={classes.drawerHeader}>
-                    <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
-                    </IconButton>
-                </div>
-                <Divider />
-                <List onClick={handleDrawerClose}>
-                    <ListItem button>
-                        {/* <ListItemIcon></ListItemIcon> */}
-                        <SelectClientModal />
-                    </ListItem>
-                    <Link className={classes.link} to="/not-developed">
-                        <ListItem button>
-                            {/* <ListItemIcon></ListItemIcon> */}
-                            <ListItemText primary="Gestión de pedidos" />
-                        </ListItem>
-                    </Link>
-                    <Link className={classes.link} to="/products">
-                        <ListItem button>
-                            {/* <ListItemIcon></ListItemIcon> */}
-                            <ListItemText primary="Productos" />
-                        </ListItem>
-                    </Link>
-                    <Link className={classes.link} to="/not-developed">
-                        <ListItem button>
-                            {/* <ListItemIcon></ListItemIcon> */}
-                            <ListItemText primary="Gestión de clientes" />
-                        </ListItem>
-                    </Link>
-                </List>
-            </Drawer>
+            <DrawerComponent open={open} handleDrawerClose={handleDrawerClose} />
         </div>
     );
 }

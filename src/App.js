@@ -18,30 +18,27 @@ class App extends Component {
 
         this.state = {
             products: [],
-            clients: [],
-            isLogin: false
+            clients: []
         };
 
         this.getProducts = this.getProducts.bind(this);
         this.getClients = this.getClients.bind(this);
         this.getData = this.getData.bind(this);
-        this.isLogin = this.isLogin.bind(this);
         this.exitLogin = this.exitLogin.bind(this);
         this.authenticateToken = this.authenticateToken.bind(this);
     }
 
-    isLogin() {
-        let isLogin = window.location.pathname === '/login' ? true : false;
-        this.setState({ isLogin: isLogin });
-    }
-
     exitLogin() {
-        this.setState({ isLogin: false })
+        this.getData();
     }
 
     authenticateToken() {
         const token = localStorage.getItem("token");
-        axios.post("/users/authenticate", { "Token": token })
+        axios.post("/users/authenticate", { "Token": token }, {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("token")
+            }
+        })
             .then(response => {
                 console.log(response);
                 if (response.data) {
@@ -60,7 +57,11 @@ class App extends Component {
     }
 
     getProducts() {
-        axios.get("/products")
+        axios.get("/products", {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("token")
+            }
+        })
             .then(response => {
                 this.setState({ products: response.data }, () => this.props.setProducts(this.state.products));
                 console.log(response);
@@ -71,7 +72,11 @@ class App extends Component {
     }
 
     getClients() {
-        axios.get("/clients")
+        axios.get("/clients", {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("token")
+            }
+        })
             .then(response => {
                 this.setState({ clients: response.data }, () => this.props.setClients(this.state.clients));
                 console.log(response);
@@ -85,7 +90,6 @@ class App extends Component {
         if (localStorage.getItem("token")) {
             this.authenticateToken();
         }
-        this.isLogin();
     }
 
     render() {

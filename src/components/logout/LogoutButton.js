@@ -5,7 +5,11 @@ import { connect } from 'react-redux';
 import * as actionTypes from '../../store/actions';
 
 const logout = (props) => {
-    axios.put("/users/logout", { Username: props.user.Username })
+    axios.put("/users/logout", { Username: props.user.Username }, {
+        headers: {
+            Authorization: "Bearer " + localStorage.getItem("token")
+        }
+    })
         .then(response => {
             console.log(response);
             localStorage.removeItem("token");

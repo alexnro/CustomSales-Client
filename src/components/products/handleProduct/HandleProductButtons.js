@@ -1,5 +1,5 @@
 import React from 'react';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
+import { ButtonGroup } from '@material-ui/core';
 import { useStyles } from '../styles/HandleProductStyle';
 import ButtonModal from '../../UI/ButtonModal';
 import ProductFormModal from '../modal/ProductFormModal';

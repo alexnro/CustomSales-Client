@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
-import { IconButton } from '@material-ui/core';
+import { IconButton, MenuItem, FormControl, Select } from '@material-ui/core';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import { styles } from './styles/AddInputStyle';
 import { withStyles } from '@material-ui/core/styles'
 import * as actionTypes from '../../store/actions';

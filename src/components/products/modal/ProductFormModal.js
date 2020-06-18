@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useStyles } from '../styles/AddProductStyle';
-import TextField from '@material-ui/core/TextField';
-import { Button, List, ListItem } from '@material-ui/core';
+import { Button, List, ListItem, TextField } from '@material-ui/core';
 import { connect } from 'react-redux';
 import * as actionTypes from '../../../store/actions';
 import firebase from 'firebase/app';

@@ -1,10 +1,6 @@
 import React, { useState } from 'react';
 import { useStyles } from './ModalStyle';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
-import Button from '@material-ui/core/Button';
-import Paper from '@material-ui/core/Paper';
+import { Modal, Backdrop, Fade, Button, Paper } from '@material-ui/core';
 import { Select, MenuItem, List, ListItem, ListItemText, FormControl } from '@material-ui/core';
 import { connect } from 'react-redux';
 import * as actionTypes from '../../store/actions';

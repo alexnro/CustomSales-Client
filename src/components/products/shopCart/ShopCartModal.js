@@ -22,7 +22,7 @@ const ShopCartModal = (props) => {
         <>
             <ButtonModal iscart className={classes.modal}>
                 <h1>Order</h1>
-                <h2>Client: {props.shopCart.client ? props.shopCart.client : "None"}</h2>
+                <h2>Client: {props.shopCart.client ? props.shopCart.client.Name : "None"}</h2>
                 <List>
                     {props.shopCart.products ? props.shopCart.products.map(product => {
                         return (

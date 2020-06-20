@@ -11,6 +11,7 @@ import productsReducer from './store/reducers/products';
 import shopCartReducer from './store/reducers/shopCart';
 import clientsReducer from './store/reducers/clients';
 import usersReducer from './store/reducers/users';
+import ordersReducer from './store/reducers/orders';
 import * as firebase from 'firebase/app';
 import 'firebase/storage';
 import firebaseConfig from './firebaseConfig';
@@ -23,7 +24,8 @@ const rootReducer = combineReducers({
     products: productsReducer,
     shopCart: shopCartReducer,
     clients: clientsReducer,
-    users: usersReducer
+    users: usersReducer,
+    orders: ordersReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers());

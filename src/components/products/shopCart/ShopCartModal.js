@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { List, ListItem, Button } from '@material-ui/core';
 import { useStyles } from './ShopCartStyle';
 import * as actionTypes from '../../../store/actions';
+import axios from '../../../axiosBaseUrl';
 
 
 const ShopCartModal = (props) => {
@@ -16,6 +17,22 @@ const ShopCartModal = (props) => {
 
     const handleDelete = (productData) => {
         props.deleteFromCart(productData);
+    }
+
+    const addOrder = () => {
+        axios.post("/orders", props.shopCart, {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("token")
+            }
+        })
+            .then(response => {
+                console.log(response);
+                alert("Added order!");
+            })
+            .catch(error => {
+                console.log(error);
+            })
+        props.addOrder(props.shopCart);
     }
 
     return (
@@ -37,7 +54,7 @@ const ShopCartModal = (props) => {
                     <ListItem>Total price: {props.shopCart.totalPrice}€</ListItem>
                 </List>
                 {props.shopCart.products.length !== 0 ?
-                    <Button className={classes.addButton} variant="outlined" color="primary">Add Order</Button>
+                    <Button onClick={addOrder} className={classes.addButton} variant="outlined" color="primary">Add Order</Button>
                     : null
                 }
             </ButtonModal>
@@ -53,7 +70,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        deleteFromCart: productData => dispatch({ type: actionTypes.DELETE_FROM_CART, productData: productData })
+        deleteFromCart: productData => dispatch({ type: actionTypes.DELETE_FROM_CART, productData: productData }),
+        addOrder: order => dispatch({ type: actionTypes.ADD_ORDER, order: order })
     }
 }
 

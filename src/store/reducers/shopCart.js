@@ -32,6 +32,12 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 totalPrice: calculateTotalPrice(state)
             };
+        case actionTypes.UPDATE_FROM_CART:
+            var updatedProducts = state.products.map(product => product.Id === action.filterProduct.Id ? action.filterProduct : product)
+            return {
+                ...state,
+                products: updatedProducts
+            }
         case actionTypes.DELETE_FROM_CART:
             var productsCartUpdated = state.products.filter(product => product.Id !== action.productData.Id);
             return {

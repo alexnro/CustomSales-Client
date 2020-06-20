@@ -20,7 +20,13 @@ const AddProductToCartInput = (props) => {
     }
 
     const handleAddProduct = () => {
-        props.addProductToCart(props.productdata, quantity);
+        const filterProduct = props.shopCart.products.filter(product => product.Id === props.productdata.Id);
+        if (typeof filterProduct != 'undefined' && filterProduct.length > 0) {
+            filterProduct[0].Quantity = quantity;
+            props.updateProductFromCart(filterProduct[0]);
+        } else {
+            props.addProductToCart(props.productdata, quantity);
+        }
         props.calculateTotalPrice();
     }
 
@@ -46,11 +52,18 @@ const AddProductToCartInput = (props) => {
     )
 }
 
+const mapStateToProps = state => {
+    return {
+        shopCart: state.shopCart
+    }
+}
+
 const mapDispatchToProps = dispatch => {
     return {
         addProductToCart: (product, quantity) => dispatch({ type: actionTypes.ADD_TO_CART, product: product, quantity: quantity }),
+        updateProductFromCart: filterProduct => dispatch({ type: actionTypes.UPDATE_FROM_CART, filterProduct: filterProduct }),
         calculateTotalPrice: () => dispatch({ type: actionTypes.CALCULATE_TOTAL_PRICE })
     }
 }
 
-export default connect(null, mapDispatchToProps)(withStyles(styles)(AddProductToCartInput));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(AddProductToCartInput));

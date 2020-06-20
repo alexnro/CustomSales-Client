@@ -20,7 +20,12 @@ const ShopCartModal = (props) => {
     }
 
     const addOrder = () => {
-        axios.post("/orders", props.shopCart, {
+        const order = {
+            products: props.shopCart.products,
+            totalPrice: props.shopCart.totalPrice,
+            clientName: props.shopCart.client.Name
+        }
+        axios.post("/orders", order, {
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("token")
             }

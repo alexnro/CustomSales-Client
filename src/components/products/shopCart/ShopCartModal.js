@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ButtonModal from '../../UI/ButtonModal';
 import { connect } from 'react-redux';
 import { List, ListItem, Button } from '@material-ui/core';
 import { useStyles } from './ShopCartStyle';
 import * as actionTypes from '../../../store/actions';
 import axios from '../../../axiosBaseUrl';
+import { Redirect } from 'react-router-dom';
 
 
 const ShopCartModal = (props) => {
     const classes = useStyles();
+
+    const [orderDone, setOrderDone] = useState(false);
 
     const getProductPrice = (price, quantity) => {
         let productPrice = price * quantity;
@@ -33,11 +36,16 @@ const ShopCartModal = (props) => {
             .then(response => {
                 console.log(response);
                 alert("Added order!");
+                setOrderDone(true);
             })
             .catch(error => {
                 console.log(error);
             })
         props.addOrder(props.shopCart);
+    }
+
+    if (orderDone) {
+        return <Redirect to="/orders" />
     }
 
     return (

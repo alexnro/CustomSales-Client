@@ -32,7 +32,7 @@ const DrawerComponent = props => {
                 <ListItem button>
                     <SelectClientModal />
                 </ListItem>
-                <Link className={classes.link} to="/not-developed">
+                <Link className={classes.link} to="/orders">
                     <ListItem button>
                         <ListItemText primary="Gestión de pedidos" />
                     </ListItem>

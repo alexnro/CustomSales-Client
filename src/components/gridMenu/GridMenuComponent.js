@@ -15,7 +15,7 @@ export default function GridMenuComponent() {
                     <SelectClientModal gridmenu />
                 </Grid>
                 <Grid item xs={4}>
-                    <Link className={classes.link} to="/not-developed">
+                    <Link className={classes.link} to="/orders">
                         <Paper className={classes.paper}>Gestión de pedidos</Paper>
                     </Link>
                 </Grid>

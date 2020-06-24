@@ -9,6 +9,7 @@ import Login from './containers/Login';
 import axios from './axiosBaseUrl';
 import { connect } from 'react-redux';
 import * as actionTypes from './store/actions';
+import Orders from './containers/Orders';
 
 
 class App extends Component {
@@ -23,6 +24,7 @@ class App extends Component {
 
         this.getProducts = this.getProducts.bind(this);
         this.getClients = this.getClients.bind(this);
+        this.getOrders = this.getOrders.bind(this);
         this.getData = this.getData.bind(this);
         this.exitLogin = this.exitLogin.bind(this);
         this.authenticateToken = this.authenticateToken.bind(this);
@@ -54,6 +56,7 @@ class App extends Component {
     getData() {
         this.getProducts();
         this.getClients();
+        this.getOrders();
     }
 
     getProducts() {
@@ -86,6 +89,21 @@ class App extends Component {
             })
     }
 
+    getOrders() {
+        axios.get("/orders", {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("token")
+            }
+        })
+            .then(response => {
+                console.log(response);
+                this.props.setOrders(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
     componentDidMount() {
         if (localStorage.getItem("token")) {
             this.authenticateToken();
@@ -107,6 +125,7 @@ class App extends Component {
                 <Switch>
                     <Route path="/products" component={Products} />
                     <Route path="/new-order" component={Products} />
+                    <Route path="/orders" component={Orders} />
                     <Route path="/not-developed" component={InDevelopment} />
                     <Route path="/menu" component={HomePage} />
                     <Redirect to="/menu" />
@@ -137,9 +156,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        setProducts: (products) => dispatch({ type: actionTypes.SET_PRODUCTS, products: products }),
-        setClients: (clients) => dispatch({ type: actionTypes.SET_CLIENTS, clients: clients }),
-        loginUser: username => dispatch({ type: actionTypes.LOGIN_USER, username: username })
+        setProducts: products => dispatch({ type: actionTypes.SET_PRODUCTS, products: products }),
+        setClients: clients => dispatch({ type: actionTypes.SET_CLIENTS, clients: clients }),
+        loginUser: username => dispatch({ type: actionTypes.LOGIN_USER, username: username }),
+        setOrders: orders => dispatch({ type: actionTypes.SET_ORDERS, orders: orders })
     }
 }
 

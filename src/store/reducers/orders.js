@@ -10,6 +10,8 @@ const reducer = (state = initialState, action) => {
         case actionTypes.ADD_ORDER:
             action.order.Id = action.Id;
             return state.concat(action.order);
+        case actionTypes.DELETE_ORDER:
+            return state.filter(order => order.Id !== action.orderId);
         default:
             return state;
     }

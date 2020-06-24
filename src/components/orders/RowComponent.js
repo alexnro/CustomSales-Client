@@ -4,6 +4,7 @@ import { Box, Collapse, IconButton, Table, TableBody, TableCell, TableHead, Tabl
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import ButtonModal from '../UI/ButtonModal';
+import DeleteOrderModal from './DeleteOrderModal';
 
 
 const RowComponent = (props) => {
@@ -27,7 +28,7 @@ const RowComponent = (props) => {
                 <TableCell align="right">{order.TotalPrice}€</TableCell>
                 <TableCell align="right">
                     <ButtonModal buttontext="Delete" color="secondary">
-                        {/* Component with modal and delete order logic */}
+                        <DeleteOrderModal order={order} />
                     </ButtonModal>
                 </TableCell>
             </TableRow>

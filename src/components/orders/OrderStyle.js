@@ -9,6 +9,9 @@ const useStyles = makeStyles((theme) => ({
     },
     table: {
         marginTop: "7.5%"
+    },
+    modalDivider: {
+        marginBottom: "5%"
     }
 }));
 

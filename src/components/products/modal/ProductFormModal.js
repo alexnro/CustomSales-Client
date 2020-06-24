@@ -35,7 +35,11 @@ const ProductFormModal = (props) => {
     }
 
     const postNewProduct = () => {
-        axios.post("/products", newProduct)
+        axios.post("/products", newProduct, {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("token")
+            }
+        })
             .then(response => {
                 console.log(response);
                 newProduct.Id = response.data.Id;
@@ -59,7 +63,11 @@ const ProductFormModal = (props) => {
     }
 
     const updateProduct = () => {
-        axios.put("/products", newProduct)
+        axios.put("/products", newProduct, {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("token")
+            }
+        })
             .then(response => {
                 console.log(response);
             })

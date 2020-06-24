@@ -10,7 +10,11 @@ const DeleteProductModal = (props) => {
     const classes = useStyles();
 
     const deleteProduct = () => {
-        axios.delete('/products?productId=' + props.productdata.Id);
+        axios.delete('/products?productId=' + props.productdata.Id, {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("token")
+            }
+        });
     }
 
     const handleDelete = () => {

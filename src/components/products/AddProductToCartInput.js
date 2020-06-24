@@ -20,7 +20,7 @@ const AddProductToCartInput = (props) => {
     }
 
     const handleAddProduct = () => {
-        const filterProduct = props.shopCart.products.filter(product => product.Id === props.productdata.Id);
+        const filterProduct = props.shopCart.Products.filter(product => product.Id === props.productdata.Id);
         if (typeof filterProduct != 'undefined' && filterProduct.length > 0) {
             filterProduct[0].Quantity = quantity;
             props.updateProductFromCart(filterProduct[0]);

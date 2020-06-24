@@ -14,7 +14,7 @@ const ProductsComponent = (props) => {
     const isNewOrder = window.location.pathname === '/new-order' ? true : false;
 
     // Redirect to main page if client is not set for new order
-    if (isNewOrder && !props.shopCart.client) {
+    if (isNewOrder && !props.shopCart.Client) {
         alert("You need to select a client first!");
         window.location.pathname = '/menu';
     }
@@ -23,7 +23,7 @@ const ProductsComponent = (props) => {
         <div className={classes.root}>
             <div className={props.classes.margintop}>
                 {isNewOrder ?
-                    <h3 className={props.classes.clientName}>Client: {props.shopCart.client.Name}</h3>
+                    <h3 className={props.classes.clientName}>Client: {props.shopCart.Client.Name}</h3>
                     : <AddProductButton />}
                 <GridList mt={150} cellHeight={320} cols={4} className={classes.gridList} spacing={12}>
                     {props.products !== undefined ? props.products.map(product => {

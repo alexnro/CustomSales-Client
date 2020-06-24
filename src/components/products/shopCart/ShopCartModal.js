@@ -24,9 +24,9 @@ const ShopCartModal = (props) => {
 
     const addOrder = () => {
         const order = {
-            products: props.shopCart.products,
-            totalPrice: props.shopCart.totalPrice,
-            clientName: props.shopCart.client.Name
+            products: props.shopCart.Products,
+            totalPrice: props.shopCart.TotalPrice,
+            client: props.shopCart.Client
         }
         axios.post("/orders", order, {
             headers: {
@@ -36,12 +36,12 @@ const ShopCartModal = (props) => {
             .then(response => {
                 console.log(response);
                 alert("Added order!");
+                props.addOrder(props.shopCart, response.data.Id);
                 setOrderDone(true);
             })
             .catch(error => {
                 console.log(error);
             })
-        props.addOrder(props.shopCart);
     }
 
     if (orderDone) {
@@ -52,9 +52,9 @@ const ShopCartModal = (props) => {
         <>
             <ButtonModal iscart className={classes.modal}>
                 <h1>Order</h1>
-                <h2>Client: {props.shopCart.client ? props.shopCart.client.Name : "None"}</h2>
+                <h2>Client: {props.shopCart.Client ? props.shopCart.Client.Name : "None"}</h2>
                 <List>
-                    {props.shopCart.products ? props.shopCart.products.map(product => {
+                    {props.shopCart.Products ? props.shopCart.Products.map(product => {
                         return (
                             <ListItem key={product.Id}>
                                 <p className={classes.name}>{product.Name}</p>
@@ -64,9 +64,9 @@ const ShopCartModal = (props) => {
                             </ListItem>
                         )
                     }) : null}
-                    <ListItem>Total price: {props.shopCart.totalPrice}€</ListItem>
+                    <ListItem>Total price: {props.shopCart.TotalPrice}€</ListItem>
                 </List>
-                {props.shopCart.products.length !== 0 ?
+                {props.shopCart.Products.length !== 0 ?
                     <Button onClick={addOrder} className={classes.addButton} variant="outlined" color="primary">Add Order</Button>
                     : null
                 }
@@ -84,7 +84,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         deleteFromCart: productData => dispatch({ type: actionTypes.DELETE_FROM_CART, productData: productData }),
-        addOrder: order => dispatch({ type: actionTypes.ADD_ORDER, order: order })
+        addOrder: (order, Id) => dispatch({ type: actionTypes.ADD_ORDER, order: order, Id: Id })
     }
 }
 

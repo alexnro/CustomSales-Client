@@ -19,4 +19,5 @@ export const LOGIN_USER = 'LOGIN_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
 
 // Orders
+export const SET_ORDERS = 'SET_ORDERS';
 export const ADD_ORDER = 'ADD_ORDER';

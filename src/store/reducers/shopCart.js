@@ -1,17 +1,17 @@
 import * as actionTypes from '../actions';
 
 const initialState = {
-    products: [],
-    totalPrice: 0,
-    client: ""
+    Products: [],
+    TotalPrice: 0,
+    Client: ""
 }
 
 const calculateTotalPrice = (state) => {
     let newTotalPrice = 0;
 
-    if (typeof state.products === 'undefined') { return newTotalPrice; }
+    if (typeof state.Products === 'undefined') { return newTotalPrice; }
 
-    for (const product of state.products) {
+    for (const product of state.Products) {
         newTotalPrice += product.Price * product.Quantity;
     }
 
@@ -22,33 +22,33 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.ADD_TO_CART:
             action.product.Quantity = action.quantity;
-            let addedProduct = state.products.concat(action.product);
+            let addedProduct = state.Products.concat(action.product);
             return {
                 ...state,
-                products: addedProduct
+                Products: addedProduct
             };
         case actionTypes.CALCULATE_TOTAL_PRICE:
             return {
                 ...state,
-                totalPrice: calculateTotalPrice(state)
+                TotalPrice: calculateTotalPrice(state)
             };
         case actionTypes.UPDATE_FROM_CART:
-            var updatedProducts = state.products.map(product => product.Id === action.filterProduct.Id ? action.filterProduct : product)
+            var updatedProducts = state.Products.map(product => product.Id === action.filterProduct.Id ? action.filterProduct : product)
             return {
                 ...state,
-                products: updatedProducts
+                Products: updatedProducts
             }
         case actionTypes.DELETE_FROM_CART:
-            var productsCartUpdated = state.products.filter(product => product.Id !== action.productData.Id);
+            var productsCartUpdated = state.Products.filter(product => product.Id !== action.productData.Id);
             return {
                 ...state,
                 products: productsCartUpdated,
-                totalPrice: calculateTotalPrice(productsCartUpdated)
+                TotalPrice: calculateTotalPrice(productsCartUpdated)
             }
         case actionTypes.SET_CLIENT:
             return {
                 ...state,
-                client: action.client
+                Client: action.client
             }
         default:
             return state;

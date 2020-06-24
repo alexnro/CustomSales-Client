@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStyles } from './OrderStyle';
-import { Box, Collapse, IconButton, Table, TableBody, TableCell, TableHead, TableRow, Typography, Button } from '@material-ui/core';
+import { Box, Collapse, IconButton, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@material-ui/core';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import ButtonModal from '../UI/ButtonModal';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Divider, Button } from '@material-ui/core';
-import { useStyles } from '../styles/DeleteProductModal';
+import { useStyles } from '../styles/DeleteProductModalStyle';
 import { connect } from 'react-redux';
 import * as actionTypes from '../../../store/actions';
 import axios from '../../../axiosBaseUrl';

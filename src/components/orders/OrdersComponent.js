@@ -1,13 +1,7 @@
 import React from 'react';
 import { useStyles } from './OrderStyle';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import RowComponent from './RowComponent';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@material-ui/core';
+import OrderRow from './OrderRow';
 import { connect } from 'react-redux';
 
 
@@ -29,7 +23,7 @@ const OrdersComponent = props => {
                 </TableHead>
                 <TableBody>
                     {props.orders ? props.orders.map(order => {
-                        return <RowComponent key={order.Id} order={order} />
+                        return <OrderRow key={order.Id} order={order} />
                     }) : null}
                 </TableBody>
             </Table>

@@ -4,12 +4,12 @@ import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import AppBarComponent from './components/header/AppBarComponent';
 import HomePage from './containers/HomePage';
 import Products from './containers/Products';
-import InDevelopment from './containers/InDevelopment';
 import Login from './containers/Login';
 import axios from './axiosBaseUrl';
 import { connect } from 'react-redux';
 import * as actionTypes from './store/actions';
 import Orders from './containers/Orders';
+import Clients from './containers/Clients';
 
 
 class App extends Component {
@@ -126,7 +126,7 @@ class App extends Component {
                     <Route path="/products" component={Products} />
                     <Route path="/new-order" component={Products} />
                     <Route path="/orders" component={Orders} />
-                    <Route path="/not-developed" component={InDevelopment} />
+                    <Route path="/clients" component={Clients} />
                     <Route path="/menu" component={HomePage} />
                     <Redirect to="/menu" />
                 </Switch>

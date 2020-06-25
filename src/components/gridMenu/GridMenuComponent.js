@@ -27,7 +27,7 @@ export default function GridMenuComponent() {
                     </Link>
                 </Grid>
                 <Grid item xs={4}>
-                    <Link className={classes.link} to="/not-developed">
+                    <Link className={classes.link} to="/clients">
                         <Paper className={classes.paper}>Gestión de clientes</Paper>
                     </Link>
                 </Grid>

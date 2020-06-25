@@ -42,7 +42,7 @@ const DrawerComponent = props => {
                         <ListItemText primary="Productos" />
                     </ListItem>
                 </Link>
-                <Link className={classes.link} to="/not-developed">
+                <Link className={classes.link} to="/clients">
                     <ListItem button>
                         <ListItemText primary="Gestión de clientes" />
                     </ListItem>

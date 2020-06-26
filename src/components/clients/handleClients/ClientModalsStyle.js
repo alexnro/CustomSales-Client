@@ -20,6 +20,10 @@ const useStyles = makeStyles((theme) => ({
     },
     divider: {
         marginBottom: "5%"
+    },
+    productsList: {
+        maxHeight: "500px",
+        overflow: "auto"
     }
 }));
 

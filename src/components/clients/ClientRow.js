@@ -1,6 +1,8 @@
 import React from 'react';
 import { TableCell, TableRow } from '@material-ui/core';
 import HandleClientsButton from './handleClients/HandleClientButtons';
+import ButtonModal from '../UI/ButtonModal';
+import SelectProductsModal from './handleClients/SelectProductsModal';
 
 
 const ClientRow = props => {
@@ -14,6 +16,11 @@ const ClientRow = props => {
                 </TableCell>
                 <TableCell>{client.Address}</TableCell>
                 <TableCell>{client.PhoneNumber}</TableCell>
+                <TableCell>
+                    <ButtonModal variant="outlined" buttontext="Active products">
+                        <SelectProductsModal />
+                    </ButtonModal>
+                </TableCell>
                 <TableCell>
                     <HandleClientsButton client={client} />
                 </TableCell>

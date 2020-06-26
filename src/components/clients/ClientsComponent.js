@@ -20,6 +20,7 @@ const ClientsComponent = props => {
                             <TableCell>Client address</TableCell>
                             <TableCell>Phone number</TableCell>
                             <TableCell />
+                            <TableCell />
                         </TableRow>
                     </TableHead>
                     <TableBody>

@@ -1,23 +1,21 @@
 import React from 'react';
-import { useStyles } from './ClientsStyle';
 import { TableCell, TableRow } from '@material-ui/core';
-import ButtonModal from '../UI/ButtonModal';
+import HandleClientsButton from './handleClients/HandleClientButtons';
+
 
 const ClientRow = props => {
     const { client } = props;
-    const classes = useStyles();
 
     return (
         <React.Fragment>
-            <TableRow className={classes.root}>
+            <TableRow>
                 <TableCell component="th" scope="row">
                     {client.Name}
                 </TableCell>
                 <TableCell>{client.Address}</TableCell>
                 <TableCell>{client.PhoneNumber}</TableCell>
                 <TableCell>
-                    <ButtonModal buttontext="Delete" color="secondary">
-                    </ButtonModal>
+                    <HandleClientsButton client={client} />
                 </TableCell>
             </TableRow>
         </React.Fragment>

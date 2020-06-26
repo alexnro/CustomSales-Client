@@ -3,12 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        '& > *': {
-            borderBottom: 'unset',
-        }
-    },
-    table: {
-        marginTop: "7.5%"
+        marginTop: "6%"
     },
     modalDivider: {
         marginBottom: "5%"

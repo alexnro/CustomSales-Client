@@ -15,9 +15,9 @@ const ProductFormModal = (props) => {
     const storageRef = firebase.storage().ref();
 
     const [newProduct, setNewProduct] = useState({
-        "Name": product != null ? product.Name : undefined,
-        "Price": product != null ? product.Price : undefined,
-        "Stock": product != null ? product.Stock : undefined,
+        "Name": product != null ? product.Name : "",
+        "Price": product != null ? product.Price : "",
+        "Stock": product != null ? product.Stock : "",
         "ImageUrl": product != null ? product.ImageUrl : undefined
     });
 

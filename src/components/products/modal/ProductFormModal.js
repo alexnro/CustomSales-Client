@@ -35,9 +35,15 @@ const ProductFormModal = (props) => {
     }
 
     const dataNotEmtpy = () => {
-        for (const data of Object.values(newProduct)) {
-            if (data === undefined || data === "") {
-                return false;
+        for (const [key, data] of Object.entries(newProduct)) {
+            if (key !== "ImageUrl") {
+                if (data === undefined || data === "") {
+                    return false;
+                }
+            } else if (props.addproduct !== undefined) {
+                if (imageFile === undefined) {
+                    return false;
+                }
             }
         }
         return true;

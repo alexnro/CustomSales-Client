@@ -59,6 +59,7 @@ const ProductFormModal = (props) => {
                 console.log(response);
                 newProduct.Id = response.data.Id;
                 props.addProduct(newProduct);
+                alert("New product added!");
             })
     }
 
@@ -85,6 +86,7 @@ const ProductFormModal = (props) => {
         })
             .then(response => {
                 console.log(response);
+                alert("Product updated!");
             })
     }
 

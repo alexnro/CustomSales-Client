@@ -34,6 +34,15 @@ const ProductFormModal = (props) => {
         }
     }
 
+    const dataNotEmtpy = () => {
+        for (const data of Object.values(newProduct)) {
+            if (data === undefined || data === "") {
+                return false;
+            }
+        }
+        return true;
+    }
+
     const postNewProduct = () => {
         axios.post("/products", newProduct, {
             headers: {
@@ -74,17 +83,24 @@ const ProductFormModal = (props) => {
     }
 
     const addNewProduct = () => {
-        newProduct.Price = parseFloat(newProduct.Price);
-        newProduct.Stock = parseFloat(newProduct.Stock);
-        handleUpload();
+        if (dataNotEmtpy()) {
+            newProduct.Price = parseFloat(newProduct.Price);
+            newProduct.Stock = parseFloat(newProduct.Stock);
+            handleUpload();
+        } else {
+            alert("You need to fill all labels!");
+        }
     }
 
     const handleUpdate = () => {
-        newProduct.Id = product.Id;
-        updateProduct();
-        props.updateProduct(newProduct);
+        if (dataNotEmtpy()) {
+            newProduct.Id = product.Id;
+            updateProduct();
+            props.updateProduct(newProduct);
+        } else {
+            alert("You need to fill all labels!");
+        }
     }
-
 
     return (
         <>

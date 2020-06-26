@@ -13,6 +13,8 @@ export const SET_CLIENT = 'SET_CLIENT';
 
 // Clients
 export const SET_CLIENTS = 'SET_CLIENTS';
+export const ADD_CLIENT = 'ADD_CLIENT';
+export const UPDATE_CLIENT = 'UPDATE_CLIENT';
 
 // Users
 export const LOGIN_USER = 'LOGIN_USER';

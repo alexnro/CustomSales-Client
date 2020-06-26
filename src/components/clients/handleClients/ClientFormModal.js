@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useStyles } from './ClientModalsStyle';
 import { Button, List, ListItem, TextField } from '@material-ui/core';
+import axios from '../../../axiosBaseUrl';
+import { connect } from 'react-redux';
+import * as actionTypes from '../../../store/actions';
 
 
 const ClientFormModal = props => {
@@ -8,9 +11,9 @@ const ClientFormModal = props => {
     const client = props.client;
 
     const [clientData, setClientData] = useState({
-        "Name": client ? client.Name : undefined,
-        "Address": client ? client.Address : undefined,
-        "PhoneNumber": client ? client.PhoneNumber : undefined
+        "Name": client ? client.Name : "",
+        "Address": client ? client.Address : "",
+        "PhoneNumber": client ? client.PhoneNumber : ""
     });
 
     const handleChange = event => {
@@ -18,12 +21,53 @@ const ClientFormModal = props => {
         setClientData(prevState => ({ ...prevState, [name]: value }));
     }
 
-    const addNewClient = () => {
+    const dataNotEmtpy = () => {
+        for (const data of Object.values(clientData)) {
+            if (data === undefined || data === "") {
+                return false;
+            }
+        }
+        return true;
+    }
 
+    const addNewClient = () => {
+        if (dataNotEmtpy()) {
+            axios.post("/clients", clientData, {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem("token")
+                }
+            })
+                .then(response => {
+                    console.log(response);
+                    clientData.Id = response.data.Id;
+                    props.addClient(clientData);
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        } else {
+            alert("You need to fill all labels!");
+        }
     }
 
     const handleUpdate = () => {
-
+        if (dataNotEmtpy()) {
+            clientData.Id = clientData.Id ? clientData.Id : client.Id;
+            axios.put("/clients", clientData, {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem("token")
+                }
+            })
+                .then(response => {
+                    console.log(response);
+                    props.updateClient(clientData);
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        } else {
+            alert("You need to fill all labels!");
+        }
     }
 
     return (
@@ -76,4 +120,11 @@ const ClientFormModal = props => {
     )
 }
 
-export default ClientFormModal;
+const mapDispatchToProps = dispatch => {
+    return {
+        addClient: client => dispatch({ type: actionTypes.ADD_CLIENT, client: client }),
+        updateClient: client => dispatch({ type: actionTypes.UPDATE_CLIENT, client: client })
+    }
+}
+
+export default connect(null, mapDispatchToProps)(ClientFormModal);

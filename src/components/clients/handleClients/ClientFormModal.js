@@ -40,6 +40,7 @@ const ClientFormModal = props => {
                 .then(response => {
                     console.log(response);
                     clientData.Id = response.data.Id;
+                    clientData.VisibleProducts = response.data.VisibleProducts;
                     props.addClient(clientData);
                 })
                 .catch(error => {

@@ -18,7 +18,7 @@ const ClientRow = props => {
                 <TableCell>{client.PhoneNumber}</TableCell>
                 <TableCell>
                     <ButtonModal variant="outlined" buttontext="Active products">
-                        <SelectProductsModal />
+                        <SelectProductsModal client={client} />
                     </ButtonModal>
                 </TableCell>
                 <TableCell>

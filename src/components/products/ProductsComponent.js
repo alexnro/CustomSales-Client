@@ -19,6 +19,12 @@ const ProductsComponent = (props) => {
         window.location.pathname = '/menu';
     }
 
+    let products = props.products;
+
+    if (isNewOrder) {
+        products = props.shopCart.Client.VisibleProducts;
+    }
+
     return (
         <div className={classes.root}>
             <div className={props.classes.margintop}>
@@ -26,7 +32,7 @@ const ProductsComponent = (props) => {
                     <h3 className={props.classes.clientName}>Client: {props.shopCart.Client.Name}</h3>
                     : <AddProductButton />}
                 <GridList mt={150} cellHeight={320} cols={4} className={classes.gridList} spacing={12}>
-                    {props.products !== undefined ? props.products.map(product => {
+                    {products !== undefined ? products.map(product => {
                         return (
                             <GridListTile key={product.Id}>
                                 <img src={product.ImageUrl} alt={product.Name} />

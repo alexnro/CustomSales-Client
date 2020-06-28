@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import * as actionTypes from './store/actions';
 import Orders from './containers/Orders';
 import Clients from './containers/Clients';
+import NewOrder from './containers/NewOrder';
 
 
 class App extends Component {
@@ -124,7 +125,7 @@ class App extends Component {
             routes = (
                 <Switch>
                     <Route path="/products" component={Products} />
-                    <Route path="/new-order" component={Products} />
+                    <Route path="/new-order" component={NewOrder} />
                     <Route path="/orders" component={Orders} />
                     <Route path="/clients" component={Clients} />
                     <Route path="/menu" component={HomePage} />

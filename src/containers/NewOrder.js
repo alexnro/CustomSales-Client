@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import ProductsComponent from '../components/products/ProductsComponent';
 
 
-class Products extends Component {
+class NewOrder extends Component {
 
     render() {
         return (
             <div>
-                <ProductsComponent />
+                <ProductsComponent neworder />
             </div>
         );
     }
 }
 
-export default Products;
+export default NewOrder;

@@ -11,24 +11,22 @@ import { connect } from 'react-redux';
 const ProductsComponent = (props) => {
     const classes = useStyles();
 
-    const isNewOrder = window.location.pathname === '/new-order' ? true : false;
-
     // Redirect to main page if client is not set for new order
-    if (isNewOrder && !props.shopCart.Client) {
+    if (props.neworder && !props.shopCart.Client) {
         alert("You need to select a client first!");
         window.location.pathname = '/menu';
     }
 
     let products = props.products;
 
-    if (isNewOrder) {
+    if (props.neworder) {
         products = props.shopCart.Client.VisibleProducts;
     }
 
     return (
         <div className={classes.root}>
             <div className={props.classes.margintop}>
-                {isNewOrder ?
+                {props.neworder ?
                     <h3 className={props.classes.clientName}>Client: {props.shopCart.Client.Name}</h3>
                     : <AddProductButton />}
                 <GridList mt={150} cellHeight={320} cols={4} className={classes.gridList} spacing={12}>
@@ -40,7 +38,7 @@ const ProductsComponent = (props) => {
                                     title={product.Name}
                                     subtitle={"Price: " + product.Price + "€ Stock: " + product.Stock}
                                     actionIcon={
-                                        isNewOrder ? <AddProductToCartInput productdata={product} /> : <HandleProductButtons productdata={product} />
+                                        props.neworder ? <AddProductToCartInput productdata={product} /> : <HandleProductButtons productdata={product} />
                                     }
                                 />
                             </GridListTile>
@@ -54,6 +52,7 @@ const ProductsComponent = (props) => {
 
 const mapStateToProps = state => {
     return {
+        products: state.products,
         shopCart: state.shopCart
     }
 }

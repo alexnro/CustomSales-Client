@@ -10,7 +10,7 @@ import { createStore, compose, combineReducers } from 'redux';
 import productsReducer from './store/reducers/products';
 import shopCartReducer from './store/reducers/shopCart';
 import clientsReducer from './store/reducers/clients';
-import usersReducer from './store/reducers/users';
+import userReducer from './store/reducers/user';
 import ordersReducer from './store/reducers/orders';
 import * as firebase from 'firebase/app';
 import 'firebase/storage';
@@ -24,7 +24,7 @@ const rootReducer = combineReducers({
     products: productsReducer,
     shopCart: shopCartReducer,
     clients: clientsReducer,
-    users: usersReducer,
+    user: userReducer,
     orders: ordersReducer
 });
 

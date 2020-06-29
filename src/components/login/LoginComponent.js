@@ -34,7 +34,7 @@ class LoginComponent extends Component {
                     console.log(response);
                     if (response.data.Username === this.state.Username) {
                         localStorage.setItem("token", response.data.Token);
-                        this.props.loginUser(this.state.Username);
+                        this.props.loginUser(response.data);
                         this.props.exitLogin();
                     } else {
                         alert("Username or password is incorrect!");
@@ -85,13 +85,13 @@ class LoginComponent extends Component {
 
 const mapStateToProps = state => {
     return {
-        user: state.users
+        user: state.user
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        loginUser: username => dispatch({ type: actionTypes.LOGIN_USER, username: username })
+        loginUser: user => dispatch({ type: actionTypes.LOGIN_USER, user: user })
     }
 }
 

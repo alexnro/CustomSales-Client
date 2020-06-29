@@ -28,7 +28,7 @@ const LogoutButton = (props) => {
 
 const mapStateToProps = state => {
     return {
-        user: state.users
+        user: state.user
     }
 }
 

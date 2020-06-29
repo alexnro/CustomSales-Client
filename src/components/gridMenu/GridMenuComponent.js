@@ -16,19 +16,19 @@ export default function GridMenuComponent() {
                 </Grid>
                 <Grid item xs={4}>
                     <Link className={classes.link} to="/orders">
-                        <Paper className={classes.paper}>Gestión de pedidos</Paper>
+                        <Paper className={classes.paper}>Orders management</Paper>
                     </Link>
                 </Grid>
             </Grid>
             <Grid container item xs={12} spacing={3}>
                 <Grid item xs={4}>
                     <Link className={classes.link} to="/products">
-                        <Paper className={classes.paper}>Productos</Paper>
+                        <Paper className={classes.paper}>Products</Paper>
                     </Link>
                 </Grid>
                 <Grid item xs={4}>
                     <Link className={classes.link} to="/clients">
-                        <Paper className={classes.paper}>Gestión de clientes</Paper>
+                        <Paper className={classes.paper}>Clients management</Paper>
                     </Link>
                 </Grid>
             </Grid>

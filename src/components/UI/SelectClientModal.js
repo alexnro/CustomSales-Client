@@ -75,8 +75,8 @@ const SelectClientModal = (props) => {
             {/* TODO fix warning due to deprecated findDOMNode in strictMode, disabling stricMode fix it but it's a better solution trying to understand 
             refs and forwardRef because is the actual way to solve it */}
             {props.gridmenu ?
-                <Paper className={classes.menuPaper} onClick={handleOpen} >Nuevo pedido</Paper>
-                : <ListItemText onClick={handleOpen} primary="Nuevo Pedido" />
+                <Paper className={classes.menuPaper} onClick={handleOpen}>New order</Paper>
+                : <ListItemText onClick={handleOpen} primary="New order" />
             }
         </>
     );

@@ -43,6 +43,7 @@ const ClientFormModal = props => {
                     clientData.Id = response.data.Id;
                     clientData.VisibleProducts = response.data.VisibleProducts;
                     props.addClient(clientData);
+                    alert("Client added!");
                 })
                 .catch(error => {
                     console.log(error);
@@ -64,6 +65,7 @@ const ClientFormModal = props => {
                     console.log(response);
                     clientData.VisibleProducts = response.data.VisibleProducts;
                     props.updateClient(clientData);
+                    alert("Client updated!");
                 })
                 .catch(error => {
                     console.log(error);

@@ -16,6 +16,7 @@ const ClientRow = props => {
                 </TableCell>
                 <TableCell>{client.Address}</TableCell>
                 <TableCell>{client.PhoneNumber}</TableCell>
+                <TableCell>{client.PriceVariation}%</TableCell>
                 <TableCell>
                     <ButtonModal variant="outlined" buttontext="Active products">
                         <SelectProductsModal client={client} />

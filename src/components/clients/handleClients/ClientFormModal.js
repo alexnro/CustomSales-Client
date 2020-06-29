@@ -13,7 +13,8 @@ const ClientFormModal = props => {
     const [clientData, setClientData] = useState({
         "Name": client ? client.Name : "",
         "Address": client ? client.Address : "",
-        "PhoneNumber": client ? client.PhoneNumber : ""
+        "PhoneNumber": client ? client.PhoneNumber : "",
+        "PriceVariation": client ? client.PriceVariation : 0
     });
 
     const handleChange = event => {
@@ -61,6 +62,7 @@ const ClientFormModal = props => {
             })
                 .then(response => {
                     console.log(response);
+                    clientData.VisibleProducts = response.data.VisibleProducts;
                     props.updateClient(clientData);
                 })
                 .catch(error => {
@@ -109,6 +111,19 @@ const ClientFormModal = props => {
                             variant="outlined"
                             name="PhoneNumber"
                             value={clientData.PhoneNumber}
+                            onChange={handleChange}
+                        />
+                    </ListItem>
+                    <ListItem>
+                        <p className={classes.label}>Price variation (in %): </p>
+                        <TextField
+                            className={classes.input}
+                            required
+                            type="number"
+                            label="Price variation"
+                            variant="outlined"
+                            name="PriceVariation"
+                            value={clientData.PriceVariation}
                             onChange={handleChange}
                         />
                     </ListItem>

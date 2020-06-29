@@ -19,6 +19,7 @@ const ClientsComponent = props => {
                             <TableCell>Client name</TableCell>
                             <TableCell>Client address</TableCell>
                             <TableCell>Phone number</TableCell>
+                            <TableCell>Price variation</TableCell>
                             <TableCell />
                             <TableCell />
                         </TableRow>

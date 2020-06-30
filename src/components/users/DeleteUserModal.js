@@ -25,11 +25,26 @@ const DeleteUserModal = props => {
             })
     }
 
+    const handleResetPassword = () => {
+        axios.put("/users/resetPassword", props.user, {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("token")
+            }
+        })
+            .then(response => {
+                console.log(response);
+            })
+            .catch(error => {
+                alert("Error: Can't reset password!");
+                console.log(error);
+            })
+    }
+
     return (
         <>
-            <h2>Do you really want to delete this client?</h2>
+            <h2>Do you really want to {props.deleteuser ? "delete this user" : "reset password"}?</h2>
             <Divider className={classes.divider} />
-            <Button onClick={handleDelete} color="secondary">Delete</Button>
+            <Button onClick={props.deleteuser ? handleDelete : handleResetPassword} color="secondary">{props.deleteuser ? "Delete" : "Reset"}</Button>
         </>
     )
 }

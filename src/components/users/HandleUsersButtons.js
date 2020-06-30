@@ -12,7 +12,7 @@ const HandleUsersButtons = props => {
                 <UsersFormModal user={props.user} />
             </ButtonModal>
             <ButtonModal color="secondary" buttontext="Delete">
-                <DeleteUserModal user={props.user} />
+                <DeleteUserModal deleteuser user={props.user} />
             </ButtonModal>
         </ButtonGroup>
     )

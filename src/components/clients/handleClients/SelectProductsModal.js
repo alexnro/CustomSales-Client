@@ -33,6 +33,7 @@ const SelectProductsModal = props => {
             .then(response => {
                 console.log(response);
                 props.updateClient(client);
+                alert("Changes saved!");
             })
             .catch(error => {
                 console.log(error);

@@ -15,7 +15,7 @@ const AddProductToCartInput = (props) => {
     };
 
     let menuItems = [];
-    for (let i = 0; i <= props.productdata.Stock; i++) {
+    for (let i = 1; i <= props.productdata.Stock; i++) {
         menuItems.push(i);
     }
 

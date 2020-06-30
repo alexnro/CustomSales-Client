@@ -6,12 +6,12 @@ const initialState = {
     Client: ""
 }
 
-const calculateTotalPrice = (state) => {
+const calculateTotalPrice = (products) => {
     let newTotalPrice = 0;
 
-    if (typeof state.Products === 'undefined') { return newTotalPrice; }
+    if (typeof products === 'undefined') { return newTotalPrice; }
 
-    for (const product of state.Products) {
+    for (const product of products) {
         newTotalPrice += product.Price * product.Quantity;
     }
 
@@ -30,7 +30,7 @@ const reducer = (state = initialState, action) => {
         case actionTypes.CALCULATE_TOTAL_PRICE:
             return {
                 ...state,
-                TotalPrice: calculateTotalPrice(state)
+                TotalPrice: calculateTotalPrice(state.Products)
             };
         case actionTypes.UPDATE_FROM_CART:
             var updatedProducts = state.Products.map(product => product.Id === action.filterProduct.Id ? action.filterProduct : product)
@@ -42,7 +42,7 @@ const reducer = (state = initialState, action) => {
             var productsCartUpdated = state.Products.filter(product => product.Id !== action.productData.Id);
             return {
                 ...state,
-                products: productsCartUpdated,
+                Products: productsCartUpdated,
                 TotalPrice: calculateTotalPrice(productsCartUpdated)
             }
         case actionTypes.SET_CLIENT:

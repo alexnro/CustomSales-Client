@@ -32,6 +32,13 @@ export default function GridMenuComponent() {
                     </Link>
                 </Grid>
             </Grid>
+            <Grid container item xs={12} spacing={3}>
+                <Grid item xs={8}>
+                    <Link className={classes.link} to="/users">
+                        <Paper className={classes.paper}>Users management</Paper>
+                    </Link>
+                </Grid>
+            </Grid>
         </div >
     );
 }

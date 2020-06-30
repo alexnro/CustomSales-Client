@@ -17,9 +17,12 @@ export const ADD_CLIENT = 'ADD_CLIENT';
 export const UPDATE_CLIENT = 'UPDATE_CLIENT';
 export const DELETE_CLIENT = 'DELETE_CLIENT';
 
-// Users
+// User
 export const LOGIN_USER = 'LOGIN_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
+
+// Users
+export const SET_USERS = 'SET_USERS';
 
 // Orders
 export const SET_ORDERS = 'SET_ORDERS';

@@ -11,6 +11,7 @@ import * as actionTypes from './store/actions';
 import Orders from './containers/Orders';
 import Clients from './containers/Clients';
 import NewOrder from './containers/NewOrder';
+import Users from './containers/Users';
 
 
 class App extends Component {
@@ -26,6 +27,7 @@ class App extends Component {
         this.getProducts = this.getProducts.bind(this);
         this.getClients = this.getClients.bind(this);
         this.getOrders = this.getOrders.bind(this);
+        this.getUsers = this.getUsers.bind(this);
         this.getData = this.getData.bind(this);
         this.exitLogin = this.exitLogin.bind(this);
         this.authenticateToken = this.authenticateToken.bind(this);
@@ -45,7 +47,7 @@ class App extends Component {
             .then(response => {
                 console.log(response);
                 if (response.data) {
-                    this.props.loginUser(response.data.Username)
+                    this.props.loginUser(response.data)
                     this.getData();
                 }
             })
@@ -58,6 +60,7 @@ class App extends Component {
         this.getProducts();
         this.getClients();
         this.getOrders();
+        this.getUsers();
     }
 
     getProducts() {
@@ -105,6 +108,21 @@ class App extends Component {
             })
     }
 
+    getUsers() {
+        axios.get("/users", {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("token")
+            }
+        })
+            .then(response => {
+                console.log(response);
+                this.props.setUsers(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
     componentDidMount() {
         if (localStorage.getItem("token")) {
             this.authenticateToken();
@@ -128,6 +146,7 @@ class App extends Component {
                     <Route path="/new-order" component={NewOrder} />
                     <Route path="/orders" component={Orders} />
                     <Route path="/clients" component={Clients} />
+                    <Route path="/users" component={Users} />
                     <Route path="/menu" component={HomePage} />
                     <Redirect to="/menu" />
                 </Switch>
@@ -151,7 +170,7 @@ class App extends Component {
 
 const mapStateToProps = state => {
     return {
-        user: state.users
+        user: state.user
     }
 }
 
@@ -159,7 +178,8 @@ const mapDispatchToProps = dispatch => {
     return {
         setProducts: products => dispatch({ type: actionTypes.SET_PRODUCTS, products: products }),
         setClients: clients => dispatch({ type: actionTypes.SET_CLIENTS, clients: clients }),
-        loginUser: username => dispatch({ type: actionTypes.LOGIN_USER, username: username }),
+        loginUser: user => dispatch({ type: actionTypes.LOGIN_USER, user: user }),
+        setUsers: users => dispatch({ type: actionTypes.SET_USERS, users: users }),
         setOrders: orders => dispatch({ type: actionTypes.SET_ORDERS, orders: orders })
     }
 }

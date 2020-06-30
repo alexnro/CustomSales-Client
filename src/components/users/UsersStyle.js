@@ -7,10 +7,6 @@ const useStyles = makeStyles((theme) => ({
     },
     modalDivider: {
         marginBottom: "5%"
-    },
-    addButton: {
-        marginBottom: "2%",
-        marginLeft: "3%"
     }
 }));
 

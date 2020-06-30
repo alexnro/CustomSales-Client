@@ -1,6 +1,7 @@
 import React from 'react'
 import ButtonModal from '../UI/ButtonModal';
-import { useStyles } from './UsersStyle';
+import UsersFormModal from './UsersFormModal';
+import { useStyles } from './UserModalsStyle';
 
 
 const AddUserButton = props => {
@@ -8,7 +9,7 @@ const AddUserButton = props => {
 
     return (
         <ButtonModal className={classes.addButton} variant="contained" color="primary" buttontext="Add User">
-
+            <UsersFormModal adduser />
         </ButtonModal>
     )
 }

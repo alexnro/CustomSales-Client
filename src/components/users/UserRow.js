@@ -20,7 +20,7 @@ const ClientRow = props => {
                     </ButtonModal>
                 </TableCell>
                 <TableCell>
-                    <HandleUsersButton />
+                    <HandleUsersButton user={user} />
                 </TableCell>
             </TableRow>
         </React.Fragment>

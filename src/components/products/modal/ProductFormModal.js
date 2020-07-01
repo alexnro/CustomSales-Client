@@ -49,6 +49,21 @@ const ProductFormModal = (props) => {
         return true;
     }
 
+    const rebuildVisibleProductsLists = () => {
+        axios.get("/clients", {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("token")
+            }
+        })
+            .then(response => {
+                console.log(response);
+                props.setClients(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
+
     const postNewProduct = () => {
         axios.post("/products", newProduct, {
             headers: {
@@ -59,6 +74,7 @@ const ProductFormModal = (props) => {
                 console.log(response);
                 newProduct.Id = response.data.Id;
                 props.addProduct(newProduct);
+                rebuildVisibleProductsLists();
                 alert("New product added!");
             })
     }
@@ -86,6 +102,7 @@ const ProductFormModal = (props) => {
         })
             .then(response => {
                 console.log(response);
+                rebuildVisibleProductsLists();
                 alert("Product updated!");
             })
     }
@@ -177,7 +194,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         addProduct: (newProduct) => dispatch({ type: actionTypes.ADD_PRODUCT, newProduct: newProduct }),
-        updateProduct: (updatedProduct) => dispatch({ type: actionTypes.UPDATE_PRODUCT, updatedProduct: updatedProduct })
+        updateProduct: (updatedProduct) => dispatch({ type: actionTypes.UPDATE_PRODUCT, updatedProduct: updatedProduct }),
+        setClients: clients => dispatch({ type: actionTypes.SET_CLIENTS, clients: clients })
     }
 }
 

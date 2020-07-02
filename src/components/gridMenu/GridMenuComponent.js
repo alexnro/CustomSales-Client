@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import useStyles from './GridMenuStyle';
 import { Paper, Grid } from '@material-ui/core';
 import SelectClientModal from '../UI/SelectClientModal';
+import { connect } from 'react-redux';
 
 
-export default function GridMenuComponent() {
+const GridMenuComponent = props => {
     const classes = useStyles();
 
     return (
@@ -32,13 +33,23 @@ export default function GridMenuComponent() {
                     </Link>
                 </Grid>
             </Grid>
-            <Grid container item xs={12} spacing={3}>
-                <Grid item xs={8}>
-                    <Link className={classes.link} to="/users">
-                        <Paper className={classes.paper}>Users management</Paper>
-                    </Link>
+            {props.user.Role === 1 ?
+                <Grid container item xs={12} spacing={3}>
+                    <Grid item xs={8}>
+                        <Link className={classes.link} to="/users">
+                            <Paper className={classes.paper}>Users management</Paper>
+                        </Link>
+                    </Grid>
                 </Grid>
-            </Grid>
+                : null}
         </div >
     );
 }
+
+const mapStateToProps = state => {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps)(GridMenuComponent);

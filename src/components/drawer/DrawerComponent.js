@@ -6,6 +6,7 @@ import { Drawer, List, ListItem, ListItemText, Divider, IconButton } from '@mate
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import SelectClientModal from '../UI/SelectClientModal';
+import { connect } from 'react-redux';
 
 
 const DrawerComponent = props => {
@@ -47,14 +48,22 @@ const DrawerComponent = props => {
                         <ListItemText primary="Clients management" />
                     </ListItem>
                 </Link>
-                <Link className={classes.link} to="/users">
-                    <ListItem button>
-                        <ListItemText primary="Users management" />
-                    </ListItem>
-                </Link>
+                {props.user.Role === 1 ?
+                    <Link className={classes.link} to="/users">
+                        <ListItem button>
+                            <ListItemText primary="Users management" />
+                        </ListItem>
+                    </Link>
+                    : null}
             </List>
         </Drawer>
     )
 }
 
-export default DrawerComponent;
+const mapStateToProps = state => {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps)(DrawerComponent);

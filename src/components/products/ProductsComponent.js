@@ -28,7 +28,7 @@ const ProductsComponent = (props) => {
             <div className={props.classes.margintop}>
                 {props.neworder ?
                     <h3 className={props.classes.clientName}>Client: {props.shopCart.Client.Name}</h3>
-                    : <AddProductButton />}
+                    : props.user.Role === 1 ? <AddProductButton /> : null}
                 <GridList mt={150} cellHeight={320} cols={4} className={classes.gridList} spacing={12}>
                     {products !== undefined ? products.map(product => {
                         return (
@@ -38,7 +38,7 @@ const ProductsComponent = (props) => {
                                     title={product.Name}
                                     subtitle={"Price: " + product.Price + "€ Stock: " + product.Stock}
                                     actionIcon={
-                                        props.neworder ? <AddProductToCartInput productdata={product} /> : <HandleProductButtons productdata={product} />
+                                        props.neworder ? <AddProductToCartInput productdata={product} /> : props.user.Role === 1 ? <HandleProductButtons productdata={product} /> : null
                                     }
                                 />
                             </GridListTile>
@@ -53,7 +53,8 @@ const ProductsComponent = (props) => {
 const mapStateToProps = state => {
     return {
         products: state.products,
-        shopCart: state.shopCart
+        shopCart: state.shopCart,
+        user: state.user
     }
 }
 

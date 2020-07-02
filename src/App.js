@@ -60,7 +60,9 @@ class App extends Component {
         this.getProducts();
         this.getClients();
         this.getOrders();
-        this.getUsers();
+        if (this.props.user.Role === 1) {
+            this.getUsers();
+        }
     }
 
     getProducts() {

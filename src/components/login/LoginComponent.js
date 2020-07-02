@@ -6,6 +6,8 @@ import axios from '../../axiosBaseUrl';
 import { connect } from 'react-redux';
 import * as actionTypes from '../../store/actions';
 import { Redirect } from 'react-router-dom';
+import ButtonModal from '../UI/ButtonModal';
+import CreatePasswordModal from './CreatePasswordModal';
 
 
 class LoginComponent extends Component {
@@ -20,6 +22,7 @@ class LoginComponent extends Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleLogin = this.handleLogin.bind(this);
+        this.handleCreatePassword = this.handleCreatePassword.bind(this);
     }
 
     handleChange = event => {
@@ -46,6 +49,10 @@ class LoginComponent extends Component {
         } else {
             alert("You need to write an username");
         }
+    }
+
+    handleCreatePassword() {
+
     }
 
     render() {
@@ -75,8 +82,14 @@ class LoginComponent extends Component {
                         <TextField onChange={this.handleChange} name="Password" id="password" label="Password" type="password" fullWidth required />
                     </Grid>
                 </Grid>
-                <Grid container justify="center" style={{ marginTop: '40px' }}>
+                <Grid container justify="center">
+                    <p className={classes.text}>*If you don't have a password already or your password has been reset please click on create password</p>
+                </Grid>
+                <Grid container justify="center" style={{ marginTop: '20px' }}>
                     <Button onClick={this.handleLogin} variant="contained" color="primary">Login</Button>
+                    <ButtonModal className={classes.passwordButton} buttontext="Create password" variant="outlined" color="primary">
+                        <CreatePasswordModal exitLogin={this.props.exitLogin} />
+                    </ButtonModal>
                 </Grid>
             </div>
         );

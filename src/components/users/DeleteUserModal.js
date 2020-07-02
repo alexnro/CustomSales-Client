@@ -32,6 +32,7 @@ const DeleteUserModal = props => {
             }
         })
             .then(response => {
+                alert("Password reset!");
                 console.log(response);
             })
             .catch(error => {

@@ -1,5 +1,5 @@
-import React from 'react';
-import { GridList, GridListTile, GridListTileBar } from '@material-ui/core';
+import React, { useState } from 'react';
+import { GridList, GridListTile, GridListTileBar, TextField } from '@material-ui/core';
 import { useStyles, styles } from './styles/ProductsStyle';
 import { withStyles } from '@material-ui/core/styles';
 import HandleProductButtons from './handleProduct/HandleProductButtons';
@@ -11,16 +11,27 @@ import { connect } from 'react-redux';
 const ProductsComponent = (props) => {
     const classes = useStyles();
 
+    const [filterText, setFilterText] = useState("");
+    const [products, setProducts] = useState(props.neworder ? props.shopCart.Client.VisibleProducts : props.products);
+
     // Redirect to main page if client is not set for new order
     if (props.neworder && !props.shopCart.Client) {
         alert("You need to select a client first!");
         window.location.pathname = '/menu';
     }
 
-    let products = props.products;
+    const applyFilter = (text) => {
+        if (text === "") {
+            setProducts(props.neworder ? props.shopCart.Client.VisibleProducts : props.products);
+        }
+        setProducts(props.products.filter(product => {
+            return product.Name.toLowerCase().includes(text.toLowerCase());
+        }));
+    }
 
-    if (props.neworder) {
-        products = props.shopCart.Client.VisibleProducts;
+    const handleChange = event => {
+        applyFilter(event.target.value);
+        setFilterText(event.target.value);
     }
 
     return (
@@ -29,6 +40,7 @@ const ProductsComponent = (props) => {
                 {props.neworder ?
                     <h3 className={props.classes.clientName}>Client: {props.shopCart.Client.Name}</h3>
                     : props.user.Role === 1 ? <AddProductButton /> : null}
+                <TextField className={classes.filter} label="Filter products" size="small" variant="filled" value={filterText} onChange={handleChange} />
                 <GridList mt={150} cellHeight={320} cols={4} className={classes.gridList} spacing={12}>
                     {products !== undefined ? products.map(product => {
                         return (

@@ -8,6 +8,10 @@ const useStyles = makeStyles((theme) => ({
         overflow: 'hidden',
         marginLeft: "5%",
         marginRight: "5%",
+    },
+    filter: {
+        background: "white",
+        marginBottom: "2%"
     }
 }));
 

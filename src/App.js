@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import AppBarComponent from './components/header/AppBarComponent';
-import HomePage from './containers/HomePage';
+import GridMenu from './containers/GridMenu';
 import Products from './containers/Products';
 import Login from './containers/Login';
 import axios from './axiosBaseUrl';
@@ -149,7 +149,7 @@ class App extends Component {
                     <Route path="/orders" component={Orders} />
                     <Route path="/clients" component={Clients} />
                     <Route path="/users" component={Users} />
-                    <Route path="/menu" component={HomePage} />
+                    <Route path="/menu" component={GridMenu} />
                     <Redirect to="/menu" />
                 </Switch>
             )

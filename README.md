@@ -21,13 +21,17 @@ En cuanto a la capa de lógica de negocio, crearé una API Rest utilizando ASP.N
 En cuanto a la capa de acceso a datos, utilizaré un módelo no relacional mediante NOSQL en MongoDB. Aún sabiendo que probablemente no sea lo más óptimo para la aplicación que planteo, si es un tipo de base de datos que manejo mejor que SQL y que me genera mayor interés. Además posee herramientas que ofrecen una gran facilidad para trabajar con MongoDB como pueden ser MongoAtlas que ofrece la posibilidad de tener la base de datos alojada en el propio servicio de Mongo o MongoCompass que te permite ejecutar queries y visualizar la base de datos de manera muy sencilla. Para manejar estos datos desde mi aplicación usaré el paquete de drivers oficial de MongoDB para C#.
 
 Además de esto, para testear y ayudar al desarrollo de la API Rest, además de las propias librerías de test unitarios, también usaré Postman y Curl para hacer peticiones a los endpoints de la API y comprobar que permite realizar peticiones que devuelvan la información correcta.
+
 ![Diagrama arquitectura](/documentationImages/diagramaArquitectura.png)
+
 _Diagrama de la arquitectura de la aplicación_
 
 ![Diagrama front](/documentationImages/diagramaFront.png)
+
 _Diagrama de componentes de la parte cliente_
 
 ![Diagrama back](/documentationImages/diagramaBack.png)
+
 _Diagrama de componentes de la parte servidor_
 
 ## Metodología de desarrollo
@@ -51,8 +55,11 @@ Mediante git, se han creado ramas para cada apartado de la aplicación y así po
 ## Diagrama de Gantt
 
 ![Diagrama de Gantt antes](/documentationImages/ganttAntes.png)
+
 _Diagrama de Gantt antes_
+
 ![Diagrama de Gantt después](/documentationImages/ganttDespues.png)
+
 _Diagrama de Gantt después_
 
 Uno de los motivos principales de la diferencia de tiempo ha sido el mal análisis de las historias de usuario, ya que al crearlas no tuve en cuenta lo suficiente las tecnologías que iba a usar y mis conocimientos en ese momento de estas, cosa que ha provocado que haya hecho ciertas partes de la aplicación de una forma diferente a la que tenía pensada y eso ha dificultado la implementación de ciertas historias de usuario que en un principio parecían más sencillas de lo que realmente han sido. Además de que de ciertas tecnologías tenía muy pocos conocimientos y otras he tenido que actualizar los conocimientos que tenía por los cambios que habían introducido en el último año.
@@ -60,22 +67,26 @@ Uno de los motivos principales de la diferencia de tiempo ha sido el mal anális
 ## Clockify
 
 ![Clockify](/documentationImages/clockify.png)
+
 _Clockify_
 
 ## Presupuesto de la app para el comprador
 
 Coste de proyecto:
-- Visual Studio Professional 45€/mes * 2 meses = 90€
-- Desarrollo 22€/hora * 92 horas = 2024€
-- Diseño de interfaz 19€/hora * 15 horas = 285€
-- Análisis 18€/hora * 12 horas = 216€
-- Diseño de BBDD 22€/hora * 5 horas = 110€
-- Despliegue 20€/hora * 3.5 horas = 70€
-Total = 2887.34€
+
+-   Visual Studio Professional 45€/mes \* 2 meses = 90€
+-   Desarrollo 22€/hora \* 92 horas = 2024€
+-   Diseño de interfaz 19€/hora \* 15 horas = 285€
+-   Análisis 18€/hora \* 12 horas = 216€
+-   Diseño de BBDD 22€/hora \* 5 horas = 110€
+-   Despliegue 20€/hora \* 3.5 horas = 70€
+    Total = 2887.34€
 
 Pago mensual para mantener el back-end:
-- Azure App Service 46.17€/mes
+
+-   Azure App Service 46.17€/mes
 
 Y en caso de ser necesario debido a un tráfico muy alto de la aplicación se deberían añadir los siguientes pagos mensuales:
-- MongoDB Atlas Dedicated Clusters 57€/mes
-- Firebase Blaze Plan pay as you go (pago en base al tráfico).
+
+-   MongoDB Atlas Dedicated Clusters 57€/mes
+-   Firebase Blaze Plan pay as you go (pago en base al tráfico).

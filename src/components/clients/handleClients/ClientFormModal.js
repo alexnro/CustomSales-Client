@@ -56,6 +56,7 @@ const ClientFormModal = props => {
     const handleUpdate = () => {
         if (dataNotEmtpy()) {
             clientData.Id = clientData.Id ? clientData.Id : client.Id;
+            clientData.VisibleProducts = client.VisibleProducts;
             axios.put("/clients", clientData, {
                 headers: {
                     Authorization: "Bearer " + localStorage.getItem("token")

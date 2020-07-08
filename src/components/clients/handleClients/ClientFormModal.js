@@ -39,14 +39,10 @@ const ClientFormModal = props => {
                 }
             })
                 .then(response => {
-                    console.log(response);
                     clientData.Id = response.data.Id;
                     clientData.VisibleProducts = response.data.VisibleProducts;
                     props.addClient(clientData);
                     alert("Client added!");
-                })
-                .catch(error => {
-                    console.log(error);
                 })
         } else {
             alert("You need to fill all labels!");
@@ -63,13 +59,9 @@ const ClientFormModal = props => {
                 }
             })
                 .then(response => {
-                    console.log(response);
                     clientData.VisibleProducts = response.data.VisibleProducts;
                     props.updateClient(clientData);
                     alert("Client updated!");
-                })
-                .catch(error => {
-                    console.log(error);
                 })
         } else {
             alert("You need to fill all labels!");

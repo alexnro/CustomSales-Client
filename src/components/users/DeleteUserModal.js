@@ -15,13 +15,11 @@ const DeleteUserModal = props => {
                 Authorization: "Bearer " + localStorage.getItem("token")
             }
         })
-            .then(response => {
-                console.log(response);
+            .then(() => {
                 props.deleteUser(props.user);
             })
             .catch(error => {
                 alert("Error: Can't delete user!");
-                console.log(error);
             })
     }
 
@@ -31,13 +29,11 @@ const DeleteUserModal = props => {
                 Authorization: "Bearer " + localStorage.getItem("token")
             }
         })
-            .then(response => {
+            .then(() => {
                 alert("Password reset!");
-                console.log(response);
             })
-            .catch(error => {
+            .catch(() => {
                 alert("Error: Can't reset password!");
-                console.log(error);
             })
     }
 

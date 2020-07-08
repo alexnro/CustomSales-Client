@@ -34,13 +34,9 @@ const ShopCartModal = (props) => {
             }
         })
             .then(response => {
-                console.log(response);
                 alert("Added order!");
                 props.addOrder(props.shopCart, response.data.Id);
                 setOrderDone(true);
-            })
-            .catch(error => {
-                console.log(error);
             })
     }
 

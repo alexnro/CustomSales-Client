@@ -45,14 +45,10 @@ class App extends Component {
             }
         })
             .then(response => {
-                console.log(response);
                 if (response.data) {
                     this.props.loginUser(response.data)
                     this.getData();
                 }
-            })
-            .catch(error => {
-                console.log(error);
             })
     }
 
@@ -73,10 +69,6 @@ class App extends Component {
         })
             .then(response => {
                 this.setState({ products: response.data }, () => this.props.setProducts(this.state.products));
-                console.log(response);
-            })
-            .catch(error => {
-                console.error(error);
             })
     }
 
@@ -88,10 +80,6 @@ class App extends Component {
         })
             .then(response => {
                 this.setState({ clients: response.data }, () => this.props.setClients(this.state.clients));
-                console.log(response);
-            })
-            .catch(error => {
-                console.log(error);
             })
     }
 
@@ -102,11 +90,7 @@ class App extends Component {
             }
         })
             .then(response => {
-                console.log(response);
                 this.props.setOrders(response.data);
-            })
-            .catch(error => {
-                console.log(error);
             })
     }
 
@@ -117,11 +101,7 @@ class App extends Component {
             }
         })
             .then(response => {
-                console.log(response);
                 this.props.setUsers(response.data);
-            })
-            .catch(error => {
-                console.log(error);
             })
     }
 

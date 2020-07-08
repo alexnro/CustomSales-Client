@@ -15,12 +15,8 @@ const DeleteClientModal = props => {
                 Authorization: "Bearer " + localStorage.getItem("token")
             }
         })
-            .then(response => {
-                console.log(response);
+            .then(() => {
                 props.deleteClient(props.client.Id);
-            })
-            .catch(error => {
-                console.log(error);
             })
     }
 

@@ -34,7 +34,6 @@ class LoginComponent extends Component {
         if (this.state.Username !== "") {
             axios.post("/users/login", this.state)
                 .then(response => {
-                    console.log(response);
                     if (response.data.Username === this.state.Username) {
                         localStorage.setItem("token", response.data.Token);
                         this.props.loginUser(response.data);
@@ -42,9 +41,6 @@ class LoginComponent extends Component {
                     } else {
                         alert("Username or password is incorrect!");
                     }
-                })
-                .catch(error => {
-                    console.log(error);
                 })
         } else {
             alert("You need to write an username");

@@ -44,13 +44,11 @@ const CreatePasswordModal = props => {
         } else {
             axios.post("/users/createPassword", userData)
                 .then(response => {
-                    console.log(response);
                     props.loginUser(response.data);
                     localStorage.setItem("token", response.data.Token);
                     props.exitLogin();
                 })
                 .catch(error => {
-                    console.log(error);
                     alert("Username not exists or already has a password!");
                 })
         }

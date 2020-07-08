@@ -30,13 +30,9 @@ const SelectProductsModal = props => {
                 Authorization: "Bearer " + localStorage.getItem("token")
             }
         })
-            .then(response => {
-                console.log(response);
+            .then(() => {
                 props.updateClient(client);
                 alert("Changes saved!");
-            })
-            .catch(error => {
-                console.log(error);
             })
     }
 

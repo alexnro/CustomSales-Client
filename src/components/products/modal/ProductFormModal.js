@@ -28,7 +28,6 @@ const ProductFormModal = (props) => {
             const { name, value } = event.target;
             setNewProduct(prevState => ({ ...prevState, [name]: value }));
         } else if (event.target.type === "file") {
-            console.log(event.target.files);
             const value = event.target.files[0];
             setImageFile(value);
         }
@@ -56,7 +55,6 @@ const ProductFormModal = (props) => {
             }
         })
             .then(response => {
-                console.log(response);
                 newProduct.Id = response.data.Id;
                 props.addProduct(newProduct);
                 props.rebuildVisibleProductsLists();
@@ -85,8 +83,7 @@ const ProductFormModal = (props) => {
                 Authorization: "Bearer " + localStorage.getItem("token")
             }
         })
-            .then(response => {
-                console.log(response);
+            .then(() => {
                 props.rebuildVisibleProductsLists();
                 alert("Product updated!");
             })

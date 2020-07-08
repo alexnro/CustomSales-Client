@@ -10,12 +10,8 @@ const logout = (props) => {
             Authorization: "Bearer " + localStorage.getItem("token")
         }
     })
-        .then(response => {
-            console.log(response);
+        .then(() => {
             localStorage.removeItem("token");
-        })
-        .catch(error => {
-            console.log(error);
         })
     props.logoutUser();
 }

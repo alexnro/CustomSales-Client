@@ -47,11 +47,7 @@ const ProductsComponent = (props) => {
             }
         })
             .then(response => {
-                console.log(response);
                 props.setClients(response.data);
-            })
-            .catch(error => {
-                console.log(error);
             })
     }
 

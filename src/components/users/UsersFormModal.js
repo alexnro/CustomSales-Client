@@ -38,13 +38,9 @@ const UsersFormModal = props => {
                 }
             })
                 .then(response => {
-                    console.log(response);
                     userData.Id = response.data.Id;
                     props.addUser(userData);
                     alert("User added!");
-                })
-                .catch(error => {
-                    console.log(error);
                 })
         } else {
             alert("You need to fill all labels!");
@@ -59,13 +55,9 @@ const UsersFormModal = props => {
                     Authorization: "Bearer " + localStorage.getItem("token")
                 }
             })
-                .then(response => {
-                    console.log(response);
+                .then(() => {
                     props.updateUser(userData);
                     alert("User updated!");
-                })
-                .catch(error => {
-                    console.log(error);
                 })
         } else {
             alert("You need to fill all labels!");

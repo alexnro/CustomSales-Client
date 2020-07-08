@@ -4,12 +4,12 @@ import ButtonModal from '../../UI/ButtonModal';
 import ProductFormModal from '../modal/ProductFormModal';
 
 
-const AddProductButton = () => {
+const AddProductButton = props => {
     const classes = useStyles();
 
     return (
         <ButtonModal className={classes.openButton} variant="contained" color="primary" buttontext="Add Product">
-            <ProductFormModal addproduct={true} />
+            <ProductFormModal rebuildVisibleProductsLists={props.rebuildVisibleProductsLists} addproduct={true} />
         </ButtonModal>
     )
 }

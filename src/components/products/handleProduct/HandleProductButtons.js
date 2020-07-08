@@ -13,10 +13,10 @@ const HandleProductButtons = (props) => {
         <div className={classes.root}>
             <ButtonGroup variant="contained" aria-label="contained primary button group">
                 <ButtonModal buttontext="Modify">
-                    <ProductFormModal productdata={props.productdata} />
+                    <ProductFormModal rebuildVisibleProductsLists={props.rebuildVisibleProductsLists} productdata={props.productdata} />
                 </ButtonModal>
                 <ButtonModal buttontext="Delete" color="secondary">
-                    <DeleteProductModal productdata={props.productdata} />
+                    <DeleteProductModal rebuildVisibleProductsLists={props.rebuildVisibleProductsLists} productdata={props.productdata} />
                 </ButtonModal>
             </ButtonGroup>
         </div>

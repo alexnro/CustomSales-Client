@@ -49,21 +49,6 @@ const ProductFormModal = (props) => {
         return true;
     }
 
-    const rebuildVisibleProductsLists = () => {
-        axios.get("/clients", {
-            headers: {
-                Authorization: "Bearer " + localStorage.getItem("token")
-            }
-        })
-            .then(response => {
-                console.log(response);
-                props.setClients(response.data);
-            })
-            .catch(error => {
-                console.log(error);
-            })
-    }
-
     const postNewProduct = () => {
         axios.post("/products", newProduct, {
             headers: {
@@ -74,7 +59,7 @@ const ProductFormModal = (props) => {
                 console.log(response);
                 newProduct.Id = response.data.Id;
                 props.addProduct(newProduct);
-                rebuildVisibleProductsLists();
+                props.rebuildVisibleProductsLists();
                 alert("New product added!");
             })
     }
@@ -102,7 +87,7 @@ const ProductFormModal = (props) => {
         })
             .then(response => {
                 console.log(response);
-                rebuildVisibleProductsLists();
+                props.rebuildVisibleProductsLists();
                 alert("Product updated!");
             })
     }

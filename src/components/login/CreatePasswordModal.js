@@ -41,19 +41,19 @@ const CreatePasswordModal = props => {
             alert("You need to fill all inputs!");
         } else if (!comparePasswords()) {
             alert("Password and repeated password are not the same!");
+        } else {
+            axios.post("/users/createPassword", userData)
+                .then(response => {
+                    console.log(response);
+                    props.loginUser(response.data);
+                    localStorage.setItem("token", response.data.Token);
+                    props.exitLogin();
+                })
+                .catch(error => {
+                    console.log(error);
+                    alert("Username not exists or already has a password!");
+                })
         }
-
-        axios.post("/users/createPassword", userData)
-            .then(response => {
-                console.log(response);
-                props.loginUser(response.data);
-                localStorage.setItem("token", response.data.Token);
-                props.exitLogin();
-            })
-            .catch(error => {
-                console.log(error);
-                alert("Username not exists or already has a password!");
-            })
     }
 
     return (

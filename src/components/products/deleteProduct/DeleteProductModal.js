@@ -14,7 +14,10 @@ const DeleteProductModal = (props) => {
             headers: {
                 Authorization: "Bearer " + localStorage.getItem("token")
             }
-        });
+        })
+            .then(() => {
+                props.rebuildVisibleProductsLists();
+            });
     }
 
     const handleDelete = () => {
